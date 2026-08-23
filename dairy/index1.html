@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RamNayan — Nature's Purity | Organic Dairy & Farm</title>
+    <meta name="description"
+        content="RamNayan delivers nature's purest organic dairy products and farm produce. From our soil to your soul — experience traditional purity.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F5F5DC',
+                        olive: { DEFAULT: '#556B2F', light: '#6B8E23', dark: '#3B4D1F' },
+                        gold: { DEFAULT: '#DAA520', light: '#F0C850', dark: '#B8860B' },
+                        brown: { DEFAULT: '#8B4513', light: '#A0522D', dark: '#5C2D0E' },
+                        surface: { DEFAULT: '#FAFAF0', card: '#FFFFF5' }
+                    },
+                    fontFamily: {
+                        heading: ['Epilogue', 'Poppins', 'sans-serif'],
+                        body: ['Lora', 'Georgia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Lenis for Smooth Scrolling -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+        rel="stylesheet">
+
+    <!-- Material Symbols -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #FAFAF0;
+            color: #3B2F1E;
+            font-family: 'Lora', Georgia, serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .font-heading {
+            font-family: 'Epilogue', 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .material-symbols-rounded {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* === GLASSMORPHISM === */
+        .glass {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .glass-dark {
+            background: rgba(85, 107, 47, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(85, 107, 47, 0.3);
+        }
+
+        /* === ANIMATED GRADIENT BORDER === */
+        .gradient-border {
+            position: relative;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, #DAA520, #556B2F, #DAA520, #8B4513);
+            background-size: 300% 300%;
+            animation: gradientMove 6s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* === GRADIENT TEXT === */
+        .text-gradient {
+            background: linear-gradient(135deg, #556B2F 0%, #DAA520 50%, #8B4513 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #DAA520, #F0C850, #DAA520);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* === GLOW BUTTON === */
+        .glow-btn {
+            background: linear-gradient(135deg, #DAA520, #F0C850);
+            color: #3B2F1E;
+            font-family: 'Epilogue', sans-serif;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            padding: 14px 36px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 4px 15px rgba(218, 165, 32, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glow-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .glow-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(218, 165, 32, 0.5);
+        }
+
+        .glow-btn:hover::before {
+            left: 100%;
+        }
+
+        /* === NAVBAR === */
+        #main-header {
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        #main-header.scrolled {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Epilogue', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #DAA520, #556B2F);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover {
+            color: #DAA520;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #556B2F;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+            background: #556B2F;
+        }
+
+        /* === HERO === */
+        .hero-bg {
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://images.pexels.com/photos/158648/bird-nesting-box-bird-house-garden-158648.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2') center/cover no-repeat;
+            animation: slowZoom 25s ease-in-out infinite alternate;
+            z-index: 0;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(250, 250, 240, 0.1) 0%,
+                    rgba(250, 250, 240, 0.3) 30%,
+                    rgba(250, 250, 240, 0.5) 60%,
+                    rgba(250, 250, 240, 0.95) 100%);
+            z-index: 1;
+        }
+
+        @keyframes slowZoom {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.08);
+            }
+        }
+
+        /* === FLOATING PARTICLES === */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* === PRODUCT SECTIONS === */
+        .product-card {
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            transition: transform 0.8s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* === SEASONAL TABS === */
+        .season-tab {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .season-tab.active {
+            background: linear-gradient(135deg, #556B2F, #6B8E23);
+            color: #F5F5DC;
+            border-color: #DAA520;
+            box-shadow: 0 4px 15px rgba(85, 107, 47, 0.3);
+        }
+
+        .season-tab:hover:not(.active) {
+            border-color: #DAA520;
+            color: #DAA520;
+        }
+
+        /* === SCROLL REVEAL === */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        /* === PRELOADER === */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: #FAFAF0;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            transition: opacity 0.6s ease;
+        }
+
+        .loader-ring {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(85, 107, 47, 0.15);
+            border-top-color: #556B2F;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* === PAGE TRANSITION === */
+        #page-curtain {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #FAFAF0, #F5F5DC);
+            z-index: 9999;
+            transform: scaleY(0);
+            transform-origin: top;
+            pointer-events: none;
+        }
+
+        /* === BACK TO TOP === */
+        #back-to-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #556B2F, #6B8E23);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 1000;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(85, 107, 47, 0.3);
+            border: none;
+        }
+
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(85, 107, 47, 0.4);
+        }
+
+        /* === SECTION DIVIDER === */
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #DAA520, #556B2F);
+            border-radius: 2px;
+            margin: 0 auto;
+        }
+
+        /* === STAT COUNTER === */
+        .stat-card {
+            text-align: center;
+            padding: 24px;
+        }
+
+        .stat-number {
+            font-family: 'Epilogue', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #556B2F, #DAA520);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* === QUOTE SECTION === */
+        .quote-mark {
+            font-size: 5rem;
+            line-height: 1;
+            background: linear-gradient(135deg, #DAA520, #F0C850);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: Georgia, serif;
+        }
+
+        /* === FOOTER === */
+        footer a {
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #DAA520;
+        }
+
+        /* === MOBILE MENU === */
+        #mobile-menu a {
+            transition: all 0.3s ease;
+        }
+
+        #mobile-menu a:hover {
+            padding-left: 24px;
+            color: #DAA520;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .stat-number {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased opacity-0">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-ring"></div>
+        <p class="font-heading text-olive text-sm tracking-widest uppercase">RamNayan</p>
+    </div>
+
+    <!-- Page Transition Curtain -->
+    <div id="page-curtain"></div>
+
+    <!-- Header & Navigation -->
+    <header id="main-header" class="glass fixed top-4 left-4 right-4 z-50 rounded-2xl">
+        <nav class="container mx-auto px-6 py-3.5 flex justify-between items-center">
+            <a class="nav-link font-heading text-xl font-extrabold tracking-tight" style="color: #556B2F;"
+                data-page="home">
+                <span class="text-gradient">Ram</span><span style="color: #DAA520;">Nayan</span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <a class="nav-link active" data-page="home">Home</a>
+                <a class="nav-link" data-page="dairy">Dairy & Milk</a>
+                <a class="nav-link" data-page="farm">Farm & Garden</a>
+                <a class="nav-link" data-page="farmstay">The Farm Stay</a>
+                <a class="nav-link" data-page="about">About Us</a>
+            </div>
+
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-olive p-2 rounded-lg hover:bg-olive/5 transition-colors"
+                    aria-label="Menu">
+                    <span class="material-symbols-rounded text-2xl">menu</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <div class="border-t border-olive/10 pt-4 space-y-1">
+                <a class="block py-2.5 px-4 rounded-lg nav-link text-sm" data-page="home">Home</a>
+                <a class="block py-2.5 px-4 rounded-lg nav-link text-sm" data-page="dairy">Dairy & Milk</a>
+                <a class="block py-2.5 px-4 rounded-lg nav-link text-sm" data-page="farm">Farm & Garden</a>
+                <a class="block py-2.5 px-4 rounded-lg nav-link text-sm" data-page="farmstay">The Farm Stay</a>
+                <a class="block py-2.5 px-4 rounded-lg nav-link text-sm" data-page="about">About Us</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content"></main>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top">
+        <span class="material-symbols-rounded">arrow_upward</span>
+    </button>
+
+    <!-- Footer -->
+    <footer class="relative z-10 bg-gradient-to-b from-olive-dark to-olive text-white"
+        style="background: linear-gradient(180deg, #3B4D1F, #556B2F);">
+        <div class="container mx-auto px-6 py-16">
+            <div class="grid md:grid-cols-4 gap-12">
+                <!-- Brand -->
+                <div class="md:col-span-1">
+                    <h3 class="font-heading text-2xl font-extrabold">
+                        <span style="color: #F5F5DC;">Ram</span><span style="color: #DAA520;">Nayan</span>
+                    </h3>
+                    <p class="mt-3 text-sm text-gray-300 leading-relaxed">Bridging the gap between traditional wisdom
+                        and modern living through organic excellence.</p>
+                    <div class="flex gap-3 mt-5">
+                        <a href="#"
+                            class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition-colors">
+                            <span class="material-symbols-rounded text-sm">share</span>
+                        </a>
+                        <a href="#"
+                            class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition-colors">
+                            <span class="material-symbols-rounded text-sm">mail</span>
+                        </a>
+                        <a href="#"
+                            class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition-colors">
+                            <span class="material-symbols-rounded text-sm">location_on</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Our Offerings -->
+                <div>
+                    <h4 class="font-heading text-sm uppercase tracking-widest text-gold mb-4">Our Offerings</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-300">
+                        <li><a href="#" class="nav-link" data-page="dairy">Pure Ghee</a></li>
+                        <li><a href="#" class="nav-link" data-page="dairy">Organic Dahi</a></li>
+                        <li><a href="#" class="nav-link" data-page="farm">Vermicompost</a></li>
+                        <li><a href="#" class="nav-link" data-page="farm">Fresh Produce</a></li>
+                    </ul>
+                </div>
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-heading text-sm uppercase tracking-widest text-gold mb-4">Quick Links</h4>
+                    <ul class="space-y-2.5 text-sm text-gray-300">
+                        <li><a href="#" class="nav-link" data-page="about">Our Story</a></li>
+                        <li><a href="#" class="nav-link" data-page="farmstay">Farm Visit</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-heading text-sm uppercase tracking-widest text-gold mb-4">Contact</h4>
+                    <div class="space-y-3 text-sm text-gray-300">
+                        <div class="flex items-start gap-2">
+                            <span class="material-symbols-rounded text-gold text-base mt-0.5">person</span>
+                            <span>S.S. Chaurasia</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="material-symbols-rounded text-gold text-base mt-0.5">call</span>
+                            <a href="tel:9987693560" class="hover:text-gold transition-colors">9987693560</a>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="material-symbols-rounded text-gold text-base mt-0.5">eco</span>
+                            <span>100% Organic & Natural</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-gray-400">&copy; 2024 RamNayan Organic Farms. All rights reserved.</p>
+                <p class="text-xs text-gray-400">Designed for Purity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function init() {
+            const mainContent = document.getElementById('main-content');
+            const mainHeader = document.getElementById('main-header');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const backToTopBtn = document.getElementById('back-to-top');
+            const pageCurtain = document.getElementById('page-curtain');
+
+            let lenis;
+
+            // --- Smooth Scrolling ---
+            function setupSmooth() {
+                lenis = new Lenis({ lerp: 0.08 });
+                lenis.on('scroll', ScrollTrigger.update);
+                gsap.ticker.add((time) => lenis.raf(time * 1000));
+                gsap.ticker.lagSmoothing(0);
+            }
+
+            // --- Product Data ---
+            const dairyProducts = [
+                { name: 'Pure Ghee', desc: 'Crafted from simmered butter, our golden ghee has a rich, nutty aroma and is a cornerstone of a healthy kitchen.', icon: 'local_fire_department', color: '#DAA520', image: 'images/pure_ghee.png' },
+                { name: 'Creamy Dahi', desc: 'Thick, creamy, and teeming with probiotics, our dahi is cultured fresh for a tangy, wholesome taste.', icon: 'breakfast_dining', color: '#F0C850', image: 'images/creamy_dahi.png' },
+                { name: 'Handcrafted Peda', desc: 'A taste of celebration, our peda is made from slow-cooked milk and cardamom, melting with authentic sweetness.', icon: 'cookie', color: '#B8860B', image: 'images/handcrafted_peda.png' },
+                { name: 'Fresh Paneer', desc: 'Soft, spongy, and rich in protein. Our paneer is made daily from pure, full-fat milk.', icon: 'set_meal', color: '#556B2F', image: 'images/fresh_paneer.png' },
+                { name: 'Wholesome Lassi', desc: 'A refreshing blend of our creamy dahi and pure water, lightly sweetened for the perfect cooling drink.', icon: 'local_cafe', color: '#6B8E23', image: 'images/wholesome_lassi.png' },
+                { name: 'Churned Buttermilk', desc: 'The traditional, light, and tangy drink, spiced with roasted cumin. A perfect digestif.', icon: 'water_drop', color: '#87CEEB', image: 'images/churned_buttermilk.png' },
+                { name: 'Traditional Kulfi', desc: 'Rich, reduced milk flavored with cardamom and saffron. No shortcuts, just pure indulgence.', icon: 'icecream', color: '#DEB887', image: 'images/traditional_kulfi.png' }
+            ];
+
+            const farmProducts = [
+                { name: 'Vermicompost', desc: "Often called 'black gold,' this is the result of earthworms transforming organic matter into the richest natural fertilizer.", icon: 'compost', color: '#3B4D1F', image: 'images/vermicompost.png' },
+                { name: 'Natural Compost', desc: "Our signature blend of farm-grown organic matter, patiently decomposed to perfection for strong soil structure.", icon: 'yard', color: '#556B2F', image: 'images/natural_compost.png' },
+                { name: 'Liquid Fertiliser', desc: "A potent, all-natural 'compost tea' brewed to perfection, providing an instant boost of microbial life.", icon: 'science', color: '#6B8E23', image: 'images/liquid_fertiliser.png' },
+                { name: 'Fresh Lemons', desc: "Grown without chemical intervention and ripened under the warm sun. Bursting with zesty, aromatic juice.", icon: 'spa', color: '#DAA520', image: 'images/fresh_lemons.png' },
+                { name: 'Sweet Guavas', desc: "Picked at the peak of fragrance and sweetness. Incredibly aromatic, rich in vitamins, and a pure delight.", icon: 'nutrition', color: '#8FBC8F', image: 'images/sweet_guavas.png' }
+            ];
+
+            const seasonalData = {
+                summer: {
+                    image: 'images/summer_farm.png',
+                    title: 'Golden Harvests & Sun-kissed Mornings',
+                    text: "Summer at RamNayan is a time of vibrant life. The sun ripens our sweetest guavas and lemons. It's the perfect season for enjoying fresh, cooling lassi and buttermilk, made daily. Join us for early morning walks to beat the heat.",
+                    icon: 'wb_sunny',
+                    color: '#DAA520'
+                },
+                monsoon: {
+                    image: 'images/monsoon_farm.png',
+                    title: 'Lush Greens & Renewed Earth',
+                    text: "The monsoon transforms the farm into a lush, green paradise. The rain rejuvenates the soil, making it the ideal time for planting and composting. Experience the magic of petrichor and see our natural fertilizer production.",
+                    icon: 'water',
+                    color: '#556B2F'
+                },
+                winter: {
+                    image: 'images/winter_farm.jpg',
+                    title: 'Misty Mornings & Warm Traditions',
+                    text: "Winter brings cool, misty mornings and pleasant days. It's the best time for hands-on farming activities. Enjoy the rich, warming flavors of our pure ghee and handcrafted peda — perfect for the cozy weather.",
+                    icon: 'ac_unit',
+                    color: '#87CEEB'
+                }
+            };
+
+            // --- Product Card Generator ---
+            function createProductCard(product, index) {
+                const isAlt = index % 2 !== 0;
+                return `
+                <div class="product-card reveal flex flex-col ${isAlt ? 'md:flex-row-reverse' : 'md:flex-row'} items-stretch">
+                    <div class="md:w-1/2 relative overflow-hidden" style="min-height: 320px;">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover" style="min-height: 320px;" loading="lazy">
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <div class="glass rounded-xl px-4 py-3 inline-flex items-center gap-2">
+                                <span class="material-symbols-rounded text-sm" style="color: ${product.color};">verified</span>
+                                <span class="font-heading text-xs font-semibold text-olive">100% Organic</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: ${product.color}20;">
+                                <span class="material-symbols-rounded" style="color: ${product.color};">${product.icon}</span>
+                            </div>
+                            <span class="font-heading text-xs uppercase tracking-widest text-gray-400">Premium Quality</span>
+                        </div>
+                        <h3 class="text-3xl font-heading text-olive">${product.name}</h3>
+                        <p class="mt-4 text-gray-600 leading-relaxed">${product.desc}</p>
+                        <div class="mt-6 flex items-center gap-2 text-gold font-heading text-sm font-semibold cursor-pointer group">
+                            <span>Learn More</span>
+                            <span class="material-symbols-rounded text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            }
+
+            // --- Page Templates ---
+            const pages = {
+                home: `
+                <!-- Hero Section -->
+                <section class="hero-bg flex items-center justify-center text-center">
+                    <div id="particles-container" class="absolute inset-0 z-[2] pointer-events-none"></div>
+                    <div class="relative z-10 max-w-4xl mx-auto px-6 py-20">
+                        <div class="glass gradient-border rounded-3xl p-10 md:p-16">
+                            <div class="flex items-center justify-center gap-2 mb-6">
+                                <span class="material-symbols-rounded text-gold text-sm">eco</span>
+                                <span class="font-heading text-xs uppercase tracking-[0.2em] text-olive">Organic & Pure Since Inception</span>
+                                <span class="material-symbols-rounded text-gold text-sm">eco</span>
+                            </div>
+                            <h1 class="text-5xl md:text-7xl font-heading font-extrabold text-gradient leading-tight">
+                                RamNayan
+                            </h1>
+                            <p class="text-2xl md:text-3xl font-heading font-semibold text-olive/70 mt-2">Nature's Purity</p>
+                            <div class="section-divider mt-6"></div>
+                            <p class="mt-6 text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                                From our soil to your soul — experience the two worlds of RamNayan. One rich with pure dairy tradition, the other rooted deep in fertile earth.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+                                <button class="glow-btn nav-link" data-page="dairy">
+                                    <span class="flex items-center gap-2">
+                                        <span class="material-symbols-rounded text-sm">breakfast_dining</span>
+                                        Explore Dairy
+                                    </span>
+                                </button>
+                                <button class="glow-btn nav-link" data-page="farm" style="background: linear-gradient(135deg, #556B2F, #6B8E23); color: white;">
+                                    <span class="flex items-center gap-2">
+                                        <span class="material-symbols-rounded text-sm">yard</span>
+                                        Discover Farm
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Stats Bar -->
+                <section class="relative z-10 bg-white py-12 border-y border-gray-100">
+                    <div class="container mx-auto px-6">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            <div class="stat-card reveal">
+                                <div class="stat-number">100%</div>
+                                <p class="text-sm text-gray-500 mt-1 font-heading font-medium">Organic</p>
+                            </div>
+                            <div class="stat-card reveal">
+                                <div class="stat-number">7+</div>
+                                <p class="text-sm text-gray-500 mt-1 font-heading font-medium">Dairy Products</p>
+                            </div>
+                            <div class="stat-card reveal">
+                                <div class="stat-number">5+</div>
+                                <p class="text-sm text-gray-500 mt-1 font-heading font-medium">Farm Products</p>
+                            </div>
+                            <div class="stat-card reveal">
+                                <div class="stat-number">0</div>
+                                <p class="text-sm text-gray-500 mt-1 font-heading font-medium">Chemicals Used</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Two Worlds Section -->
+                <section class="relative z-10 py-24 bg-surface">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-16 reveal">
+                            <span class="font-heading text-xs uppercase tracking-[0.2em] text-gold">Two Worlds of Purity</span>
+                            <h2 class="text-4xl md:text-5xl font-heading text-gradient mt-3">The Heart of RamNayan</h2>
+                            <div class="section-divider mt-6"></div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                            <div class="glass gradient-border rounded-2xl p-10 text-center reveal group cursor-pointer" style="border-radius: 16px;">
+                                <div class="w-16 h-16 rounded-2xl bg-gold/10 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-rounded text-gold text-3xl">breakfast_dining</span>
+                                </div>
+                                <h3 class="text-2xl font-heading text-olive">The Taste of Tradition</h3>
+                                <p class="mt-4 text-gray-600 leading-relaxed">Premium organic dairy products crafted with ancestral wisdom. Our happy cows graze on lush, chemical-free pastures.</p>
+                                <button class="glow-btn mt-8 nav-link text-sm" data-page="dairy">Explore Dairy</button>
+                            </div>
+                            <div class="glass gradient-border rounded-2xl p-10 text-center reveal group cursor-pointer" style="border-radius: 16px;">
+                                <div class="w-16 h-16 rounded-2xl bg-olive/10 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                                    <span class="material-symbols-rounded text-olive text-3xl">yard</span>
+                                </div>
+                                <h3 class="text-2xl font-heading text-olive">The Goodness of the Earth</h3>
+                                <p class="mt-4 text-gray-600 leading-relaxed">Fresh, pesticide-free produce harvested from our sustainable gardens. Taste the vibrant flavors of food grown in living soil.</p>
+                                <button class="glow-btn mt-8 nav-link text-sm" data-page="farm" style="background: linear-gradient(135deg, #556B2F, #6B8E23); color: white;">Discover Farm</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Founder Section -->
+                <section class="relative z-10 py-24 bg-white overflow-hidden">
+                    <div class="absolute top-0 right-0 w-96 h-96 rounded-full" style="background: radial-gradient(circle, rgba(218,165,32,0.05) 0%, transparent 70%);"></div>
+                    <div class="container mx-auto px-6">
+                        <div class="flex flex-col md:flex-row items-center gap-12 max-w-5xl mx-auto reveal">
+                            <div class="md:w-1/3 flex-shrink-0">
+                                <div class="relative">
+                                    <div class="w-56 h-56 md:w-64 md:h-64 rounded-full mx-auto overflow-hidden shadow-2xl gradient-border" style="border-radius: 50%;">
+                                        <img src="images/founder_portrait.jpg" alt="Founder S.S. Chaurasia" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 glass rounded-full px-4 py-1.5 flex items-center gap-1.5 shadow-lg">
+                                        <span class="material-symbols-rounded text-olive text-sm">verified</span>
+                                        <span class="font-heading text-xs font-semibold text-olive">Founder</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md:w-2/3 text-center md:text-left">
+                                <span class="font-heading text-xs uppercase tracking-[0.2em] text-gold">Meet The Founder</span>
+                                <h2 class="text-3xl md:text-4xl font-heading mt-3">From Engineer to <span class="text-gradient">Earth-Keeper</span></h2>
+                                <p class="mt-5 text-gray-600 leading-relaxed">S.S. Chaurasia left behind a corporate career to answer a different calling: a return to the land. His mission — to provide families with pure, healthy food and to build a business where integrity is the most valuable asset.</p>
+                                <div class="mt-8 bg-surface rounded-2xl p-6 border-l-4 border-gold">
+                                    <span class="quote-mark">"</span>
+                                    <p class="text-xl italic text-gray-700 -mt-6 ml-2">No work is small or big. Work is work, and we respect every kind of work.</p>
+                                </div>
+                                <button class="glow-btn mt-8 nav-link text-sm" data-page="about">Read Our Story</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Farm Stay CTA -->
+                <section class="relative z-10 py-32 text-white text-center overflow-hidden">
+                    <div class="absolute inset-0 bg-cover bg-center bg-fixed" style="background-image: url('images/farm_landscape.png');"></div>
+                    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(59,77,31,0.85), rgba(85,107,47,0.75));"></div>
+                    <div class="relative container mx-auto px-6 reveal">
+                        <span class="material-symbols-rounded text-gold text-4xl mb-4">cottage</span>
+                        <h2 class="text-4xl md:text-5xl font-heading font-extrabold">Experience the Heart of RamNayan</h2>
+                        <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-200 leading-relaxed">Step away from the city noise and reconnect with nature. Join us for a farm stay that feeds your spirit and restores your peace.</p>
+                        <button class="glow-btn mt-10 nav-link text-base" data-page="farmstay">
+                            <span class="flex items-center gap-2">
+                                <span class="material-symbols-rounded text-sm">explore</span>
+                                Plan Your Escape
+                            </span>
+                        </button>
+                    </div>
+                </section>
+            `,
+
+                dairy: `
+                <div class="pt-24 pb-8 bg-surface relative z-10">
+                    <div class="container mx-auto px-6 text-center max-w-3xl reveal">
+                        <span class="font-heading text-xs uppercase tracking-[0.2em] text-gold">Our Dairy Collection</span>
+                        <h1 class="text-4xl md:text-5xl font-heading text-gradient mt-3">Pure, Traditional, and Full of Life</h1>
+                        <div class="section-divider mt-6"></div>
+                        <p class="mt-6 text-gray-600 leading-relaxed">At RamNayan Dairy, we believe great milk products start with happy cows. Our cattle roam freely, graze on natural fodder, and are treated with kindness. We honor tradition, using time-tested processes to create dairy products free from hormones, antibiotics, and artificial additives.</p>
+                    </div>
+                </div>
+                <section class="py-12 bg-surface relative z-10">
+                    <div class="container mx-auto px-6 space-y-8 max-w-5xl">
+                        ${dairyProducts.map((p, i) => createProductCard(p, i)).join('')}
+                    </div>
+                </section>
+            `,
+
+                farm: `
+                <div class="pt-24 pb-8 bg-surface relative z-10">
+                    <div class="container mx-auto px-6 text-center max-w-3xl reveal">
+                        <span class="font-heading text-xs uppercase tracking-[0.2em] text-gold">Our Farm Collection</span>
+                        <h1 class="text-4xl md:text-5xl font-heading text-gradient mt-3">From Our Healthy Soil to Your Home</h1>
+                        <div class="section-divider mt-6"></div>
+                        <p class="mt-6 text-gray-600 leading-relaxed">Welcome to the heart of RamNayan — our farm. Here, the soil is a living, breathing ecosystem we nurture with passion. We practice regenerative agriculture, creating a harmonious cycle where healthy land produces vibrant, nutrient-rich food.</p>
+                    </div>
+                </div>
+                <section class="py-12 bg-surface relative z-10">
+                    <div class="container mx-auto px-6 space-y-8 max-w-5xl">
+                        ${farmProducts.map((p, i) => createProductCard(p, i)).join('')}
+                    </div>
+                </section>
+            `,
+
+                farmstay: `
+                <div class="pt-24 pb-8 bg-surface relative z-10">
+                    <div class="container mx-auto px-6 max-w-5xl">
+                        <div class="text-center reveal">
+                            <span class="material-symbols-rounded text-gold text-4xl mb-3">cottage</span>
+                            <h1 class="text-4xl md:text-5xl font-heading text-gradient">Find Yourself in the Quiet of Nature</h1>
+                            <div class="section-divider mt-6"></div>
+                            <p class="mt-6 max-w-3xl mx-auto text-gray-600 leading-relaxed">Imagine waking to the gentle sound of birdsong instead of an alarm clock. Picture a morning spent not in traffic, but walking through fragrant lemon and guava groves. The RamNayan Farm Stay is your sanctuary from the relentless pace of modern life.</p>
+                        </div>
+
+                        <!-- Seasonal Highlights -->
+                        <div class="mt-16 glass gradient-border rounded-3xl p-8 md:p-12 reveal" style="border-radius: 24px;">
+                            <div class="text-center mb-8">
+                                <span class="font-heading text-xs uppercase tracking-[0.2em] text-gold">Seasonal Guide</span>
+                                <h2 class="text-3xl font-heading text-olive mt-2">A Year on the Farm</h2>
+                            </div>
+                            <div class="flex justify-center gap-3 mb-10">
+                                <button class="season-tab active font-heading font-semibold py-2.5 px-6 rounded-full text-sm flex items-center gap-2" data-season="summer">
+                                    <span class="material-symbols-rounded text-sm">wb_sunny</span> Summer
+                                </button>
+                                <button class="season-tab font-heading font-semibold py-2.5 px-6 rounded-full text-sm flex items-center gap-2" data-season="monsoon">
+                                    <span class="material-symbols-rounded text-sm">water</span> Monsoon
+                                </button>
+                                <button class="season-tab font-heading font-semibold py-2.5 px-6 rounded-full text-sm flex items-center gap-2" data-season="winter">
+                                    <span class="material-symbols-rounded text-sm">ac_unit</span> Winter
+                                </button>
+                            </div>
+                            <div id="seasonal-content" class="flex flex-col md:flex-row gap-8 items-center"></div>
+                        </div>
+
+                        <!-- Booking Section -->
+                        <div class="mt-16 glass gradient-border rounded-3xl p-8 md:p-12 text-center reveal" style="border-radius: 24px;">
+                            <span class="material-symbols-rounded text-gold text-4xl mb-4">calendar_month</span>
+                            <h2 class="text-3xl font-heading text-olive">Direct Booking with the Founder</h2>
+                            <p class="mt-4 max-w-2xl mx-auto text-gray-600 leading-relaxed">To maintain the personal and authentic nature of the experience, all inquiries and bookings are handled directly by the owner. Please reach out to discuss your visit.</p>
+                            <div class="mt-8 bg-white rounded-2xl p-8 max-w-md mx-auto shadow-lg border border-gray-100">
+                                <div class="w-16 h-16 rounded-full mx-auto overflow-hidden mb-4 shadow-md">
+                                    <img src="images/founder_portrait.jpg" alt="S.S. Chaurasia" class="w-full h-full object-cover">
+                                </div>
+                                <h3 class="font-heading font-bold text-olive text-lg">S.S. Chaurasia</h3>
+                                <p class="text-sm text-gray-400 font-heading">Founder & Host</p>
+                                <a href="tel:9987693560" class="mt-4 inline-flex items-center gap-2 glow-btn text-sm">
+                                    <span class="material-symbols-rounded text-sm">call</span>
+                                    9987693560
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+
+                about: `
+                <div class="pt-24 pb-8 bg-surface relative z-10">
+                    <div class="container mx-auto px-6 max-w-4xl">
+                        <div class="text-center reveal">
+                            <span class="material-symbols-rounded text-gold text-4xl mb-3">auto_stories</span>
+                            <h1 class="text-4xl md:text-5xl font-heading text-gradient">Our Story is a Return to Our Roots</h1>
+                            <div class="section-divider mt-6"></div>
+                        </div>
+
+                        <!-- Origin -->
+                        <section class="mt-16 reveal">
+                            <div class="flex flex-col md:flex-row gap-10 items-center">
+                                <div class="md:w-1/2">
+                                    <span class="font-heading text-xs uppercase tracking-[0.2em] text-gold">The Beginning</span>
+                                    <h2 class="text-3xl font-heading text-olive mt-2">From a Corporate Desk to an Open Field</h2>
+                                    <p class="mt-5 text-gray-600 leading-relaxed">For years, our founder, S.S. Chaurasia, excelled in the world of engineering. It was a life of precision, deadlines, and success, yet a deeper purpose called to him. He saw a growing disconnect between people and the food they ate — a world of processed ingredients and forgotten traditions.</p>
+                                </div>
+                                <div class="md:w-1/2">
+                                    <div class="rounded-2xl overflow-hidden shadow-xl">
+                                        <img src="images/farm_landscape.png" alt="Farm landscape" class="w-full h-64 object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Philosophy -->
+                        <section class="mt-20 reveal">
+                            <div class="glass gradient-border rounded-3xl p-8 md:p-12 text-center" style="border-radius: 24px;">
+                                <span class="material-symbols-rounded text-gold text-4xl mb-4">favorite</span>
+                                <h2 class="text-3xl font-heading text-olive">"Work is Work"</h2>
+                                <p class="mt-5 text-gray-600 leading-relaxed max-w-2xl mx-auto">The foundation of RamNayan rests on a simple, profound philosophy: "no work is small or big, work is work, and we respect every kind of work." This belief is our guide. It's in the respectful care we give our cows, the patient tending of our soil, and the meticulous crafting of our products.</p>
+                            </div>
+                        </section>
+
+                        <!-- Founder's Message -->
+                        <section class="mt-20 reveal">
+                            <div class="bg-white rounded-3xl p-10 md:p-14 shadow-xl border border-gray-100 text-center">
+                                <span class="quote-mark">"</span>
+                                <p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed -mt-4 max-w-2xl mx-auto">When you choose RamNayan, you are choosing more than just a product. You are choosing a philosophy. You are choosing food that is honest, made with respect, and connected to the earth. It is my personal promise to you that we will always remain true to these values. Welcome to our family.</p>
+                                <div class="mt-8">
+                                    <div class="w-16 h-16 rounded-full mx-auto overflow-hidden shadow-md mb-3">
+                                        <img src="images/founder_portrait.jpg" alt="S.S. Chaurasia" class="w-full h-full object-cover">
+                                    </div>
+                                    <p class="font-heading text-lg font-bold text-olive">S.S. Chaurasia</p>
+                                    <p class="text-sm text-gray-400">Founder, RamNayan</p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            `
+            };
+
+            // --- Floating Particles ---
+            function createParticles() {
+                const container = document.getElementById('particles-container');
+                if (!container) return;
+                const colors = ['#DAA520', '#556B2F', '#8B4513', '#6B8E23'];
+                for (let i = 0; i < 20; i++) {
+                    const p = document.createElement('div');
+                    p.classList.add('particle');
+                    const size = Math.random() * 6 + 3;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    p.style.width = size + 'px';
+                    p.style.height = size + 'px';
+                    p.style.background = color;
+                    p.style.opacity = (Math.random() * 0.3 + 0.1).toString();
+                    p.style.left = Math.random() * 100 + '%';
+                    p.style.top = Math.random() * 100 + '%';
+                    container.appendChild(p);
+
+                    gsap.to(p, {
+                        y: -Math.random() * 200 - 50,
+                        x: (Math.random() - 0.5) * 100,
+                        duration: Math.random() * 8 + 6,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: 'sine.inOut',
+                        delay: Math.random() * 3
+                    });
+                }
+            }
+
+            // --- Scroll-Triggered Animations ---
+            function setupAnimations() {
+                gsap.utils.toArray('.reveal').forEach(elem => {
+                    gsap.fromTo(elem,
+                        { autoAlpha: 0, y: 50 },
+                        {
+                            autoAlpha: 1, y: 0,
+                            duration: 1, ease: 'power3.out',
+                            scrollTrigger: {
+                                trigger: elem,
+                                start: 'top 85%',
+                                toggleActions: 'play none none none'
+                            }
+                        }
+                    );
+                });
+            }
+
+            // --- Seasonal Tabs ---
+            function setupSeasonalTabs() {
+                const tabs = document.querySelectorAll('.season-tab');
+                const content = document.getElementById('seasonal-content');
+                if (!content) return;
+
+                function updateSeason(season) {
+                    const d = seasonalData[season];
+                    content.innerHTML = `
+                    <div class="md:w-1/2 rounded-2xl overflow-hidden shadow-xl">
+                        <img src="${d.image}" alt="${season}" class="w-full h-72 object-cover">
+                    </div>
+                    <div class="md:w-1/2">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="material-symbols-rounded" style="color: ${d.color};">${d.icon}</span>
+                            <span class="font-heading text-sm font-semibold text-olive capitalize">${season}</span>
+                        </div>
+                        <h3 class="text-2xl font-heading text-olive">${d.title}</h3>
+                        <p class="mt-4 text-gray-600 leading-relaxed">${d.text}</p>
+                    </div>
+                `;
+                    gsap.fromTo(content, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
+                }
+
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        tabs.forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                        updateSeason(tab.dataset.season);
+                    });
+                });
+
+                updateSeason('summer');
+            }
+
+            // --- Page Loading ---
+            async function loadPage(page) {
+                if (!pages[page]) return;
+
+                gsap.to(pageCurtain, {
+                    scaleY: 1, duration: 0.3, ease: 'power2.inOut', transformOrigin: 'top',
+                    onComplete: () => {
+                        ScrollTrigger.getAll().forEach(t => t.kill());
+                        mainContent.innerHTML = pages[page];
+                        mainContent.style.paddingTop = page === 'home' ? '0' : '0';
+
+                        lenis.scrollTo(0, { immediate: true });
+                        updateActiveLink(page);
+
+                        gsap.to(pageCurtain, {
+                            scaleY: 0, duration: 0.3, ease: 'power2.inOut', transformOrigin: 'bottom',
+                            delay: 0.1,
+                            onComplete: () => {
+                                setupAnimations();
+                                if (page === 'home') createParticles();
+                                if (page === 'farmstay') setupSeasonalTabs();
+                            }
+                        });
+
+                        document.title = `RamNayan — ${page.charAt(0).toUpperCase() + page.slice(1)} | Nature's Purity`;
+                    }
+                });
+            }
+
+            function updateActiveLink(page) {
+                document.querySelectorAll('.nav-link').forEach(link =>
+                    link.classList.toggle('active', link.dataset.page === page)
+                );
+            }
+
+            // --- Scroll Header ---
+            function setupScrollHeader() {
+                window.addEventListener('scroll', () => {
+                    mainHeader.classList.toggle('scrolled', window.scrollY > 50);
+                    backToTopBtn.classList.toggle('visible', window.scrollY > 400);
+                });
+            }
+
+            // --- Events ---
+            document.body.addEventListener('click', (e) => {
+                const link = e.target.closest('.nav-link');
+                if (link && link.dataset.page) {
+                    e.preventDefault();
+                    loadPage(link.dataset.page);
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+
+            mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            backToTopBtn.addEventListener('click', () => lenis.scrollTo(0));
+
+            // --- Init ---
+            setupSmooth();
+            setupScrollHeader();
+
+            window.onload = () => {
+                const preloader = document.getElementById('preloader');
+                gsap.to(preloader, {
+                    opacity: 0, duration: 0.5,
+                    onComplete: () => preloader.style.display = 'none'
+                });
+                document.body.style.opacity = '1';
+                gsap.to(pageCurtain, { scaleY: 0, duration: 0.5, ease: 'power2.inOut', delay: 0.2, transformOrigin: 'bottom' });
+                loadPage('home');
+            };
+        }
+        init();
+    </script>
+</body>
+
+</html>
