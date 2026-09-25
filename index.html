@@ -1,1113 +1,565 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RamNayan — Nature's Purity | Organic Dairy & Farm</title>
-    <meta name="description"
-        content="RamNayan delivers nature's purest organic dairy products and farm produce. From our soil to your soul — experience traditional purity.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ram Nayan Dairy — Milk, the way it was meant to be</title>
+<meta name="description" content="Ram Nayan Dairy: fresh milk, ghee, paneer, dahi and more, made every day on our family farm.">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --paper:#FAF6EE;
+  --paper-deep:#F1E9D6;
+  --ink:#1C1917;
+  --muted:#6B6259;
+  --green:#2F4A2C;
+  --green-deep:#223820;
+  --hairline:#DCD2BC;
+  --serif:"EB Garamond",Georgia,"Times New Roman",serif;
+  --hindi:"Tiro Devanagari Hindi","Noto Sans Devanagari",serif;
+  --nav-h:76px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:auto}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{
+  font-family:var(--serif);
+  background:var(--paper);
+  color:var(--ink);
+  font-size:1.075rem;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--green);color:var(--paper)}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--paper-deep)}
+::-webkit-scrollbar-thumb{background:var(--green);border:2px solid var(--paper-deep)}
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        cream: '#F5F5DC',
-                        olive: { DEFAULT: '#556B2F', light: '#6B8E23', dark: '#3B4D1F' },
-                        gold: { DEFAULT: '#DAA520', light: '#F0C850', dark: '#B8860B' },
-                        brown: { DEFAULT: '#8B4513', light: '#A0522D', dark: '#5C2D0E' },
-                        surface: { DEFAULT: '#FAFAF0', card: '#FFFFF5' }
-                    },
-                    fontFamily: {
-                        heading: ['Epilogue', 'Poppins', 'sans-serif'],
-                        body: ['Lora', 'Georgia', 'serif'],
-                    }
-                }
-            }
-        }
-    </script>
+/* consistent photographic grade across all images */
+.photo{filter:sepia(.14) saturate(1.03) contrast(1.01)}
 
-    <!-- GSAP & ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+/* ============ NAV ============ */
+.nav{
+  position:fixed;inset:0 0 auto 0;height:var(--nav-h);z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,4vw,56px);
+  background:transparent;transition:background .35s ease,border-color .35s ease;
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{background:rgba(250,246,238,.96);border-bottom-color:var(--hairline)}
+.brand{display:flex;align-items:baseline;gap:.6rem;text-decoration:none}
+.brand .dev{font-family:var(--hindi);font-size:1.35rem;line-height:1}
+.brand .lat{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;font-size:1rem;color:var(--ink);position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;height:1px;width:0;background:var(--green);transition:width .3s ease}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:.55rem;
+  background:var(--green);color:var(--paper);text-decoration:none;
+  padding:.65rem 1.2rem;font-size:.95rem;letter-spacing:.04em;
+  transition:background .25s ease,transform .15s ease;
+}
+.nav-cta:hover{background:var(--green-deep)}
+.nav-cta:active{transform:scale(.97)}
+.nav-cta svg{width:16px;height:16px}
+.menu-btn{display:none;background:none;border:0;cursor:pointer;padding:.5rem}
+.menu-btn svg{width:26px;height:26px}
+.mobile-menu{display:none}
 
-    <!-- Lenis for Smooth Scrolling -->
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+/* ============ HERO ============ */
+.hero{
+  min-height:100svh;
+  display:grid;grid-template-columns:1.05fr .95fr;
+  gap:clamp(2rem,5vw,5rem);
+  align-items:center;
+  padding:calc(var(--nav-h) + clamp(2rem,5vh,4rem)) clamp(20px,4vw,56px) clamp(3rem,7vh,5rem);
+  max-width:1440px;margin:0 auto;
+}
+.hero-kicker-line{width:56px;height:2px;background:var(--green);margin-bottom:1.6rem}
+.hero h1{
+  font-family:var(--hindi);font-weight:400;
+  font-size:clamp(3.4rem,8.5vw,6rem);
+  line-height:1.18;letter-spacing:0;margin-bottom:1.2rem;
+}
+.hero .latin-line{
+  font-style:italic;font-weight:500;
+  font-size:clamp(1.5rem,2.6vw,2.1rem);
+  line-height:1.35;margin-bottom:1.2rem;
+}
+.hero .sub{color:var(--muted);max-width:34ch;margin-bottom:2.2rem}
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:var(--ink);color:var(--paper);text-decoration:none;
+  padding:.9rem 1.7rem;font-size:1rem;letter-spacing:.03em;
+  transition:background .25s ease,transform .15s ease;
+}
+.btn:hover{background:var(--green)}
+.btn:active{transform:scale(.97)}
+.btn svg{width:17px;height:17px}
+.hero figure{margin:0}
+.hero figure img{width:100%;aspect-ratio:4/4.6;object-fit:cover}
+.hero figcaption{margin-top:.7rem;font-size:.95rem;color:var(--muted);font-style:italic}
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
-        rel="stylesheet">
+/* hero entrance: the one authored moment */
+.rise{opacity:0;transform:translateY(26px)}
+.loaded .rise{opacity:1;transform:none;transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.loaded .rise.d1{transition-delay:.08s}.loaded .rise.d2{transition-delay:.18s}
+.loaded .rise.d3{transition-delay:.3s}.loaded .rise.d4{transition-delay:.42s}
+.loaded .rise.d5{transition-delay:.54s}
 
-    <!-- Material Symbols -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
+/* ============ SECTIONS ============ */
+.section{padding:clamp(4.5rem,9vw,8.5rem) clamp(20px,4vw,56px);max-width:1440px;margin:0 auto;scroll-margin-top:calc(var(--nav-h) + 12px)}
+.sec-head{max-width:62ch;margin-bottom:clamp(2.5rem,5vw,4.5rem)}
+.sec-head h2{
+  font-weight:500;font-size:clamp(2.1rem,4.2vw,3.3rem);
+  line-height:1.15;letter-spacing:-.015em;margin-bottom:1rem;
+  text-wrap:balance;
+}
+.sec-head p{color:var(--muted);max-width:56ch}
 
-    <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
+/* scroll reveals: gentle, once */
+[data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+[data-reveal].in{opacity:1;transform:none}
 
-        body {
-            background-color: #FAFAF0;
-            color: #3B2F1E;
-            font-family: 'Lora', Georgia, serif;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+/* ============ DAIRY: two editorial splits, then an index list ============ */
+.split{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(2rem,5vw,5rem);align-items:center;
+  margin-bottom:clamp(4rem,8vw,7rem);
+}
+.split:last-of-type{margin-bottom:clamp(3rem,6vw,5rem)}
+.split img{width:100%;aspect-ratio:4/3.4;object-fit:cover}
+.split.flip .txt{order:-1}
+.split .txt h3{font-weight:500;font-size:clamp(1.7rem,2.8vw,2.4rem);letter-spacing:-.01em;margin-bottom:.9rem}
+.split .txt p{color:var(--muted);max-width:44ch}
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        .font-heading {
-            font-family: 'Epilogue', 'Poppins', sans-serif;
-            font-weight: 700;
-        }
+/* product index: hairline-divided rows, no cards */
+.index{border-top:1px solid var(--hairline)}
+.index-row{
+  display:grid;grid-template-columns:76px 1fr;gap:1.4rem;align-items:center;
+  padding:1.5rem .25rem;border-bottom:1px solid var(--hairline);
+  text-decoration:none;transition:background .25s ease;
+}
+.index-row:hover{background:var(--paper-deep)}
+.index-row img{width:76px;height:76px;object-fit:cover}
+.index-row h3{font-weight:500;font-size:1.45rem;letter-spacing:-.01em;margin-bottom:.15rem}
+.index-row p{color:var(--muted);font-size:1rem;line-height:1.55;max-width:60ch}
 
-        .material-symbols-rounded {
-            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
+/* ============ FARM: full-bleed image break ============ */
+.farm-break{margin:0;max-width:none;padding-left:0;padding-right:0}
+.farm-break img{width:100%;height:clamp(320px,58vh,560px);object-fit:cover}
+.farm-body{max-width:1440px;margin:0 auto;padding:clamp(3rem,6vw,5rem) clamp(20px,4vw,56px) 0}
+.farm-body h2{font-weight:500;font-size:clamp(2.1rem,4.2vw,3.3rem);line-height:1.15;letter-spacing:-.015em;margin-bottom:1rem;text-wrap:balance;max-width:22ch}
+.farm-body>p{color:var(--muted);max-width:60ch;margin-bottom:2rem}
+.farm-outputs{list-style:none;display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--hairline)}
+.farm-outputs li{
+  flex:1 1 220px;padding:1.4rem 1.5rem 1.4rem 0;
+  border-bottom:1px solid var(--hairline);
+  font-size:1.15rem;font-weight:500;
+}
+.farm-outputs li span{display:block;font-weight:400;font-size:.98rem;color:var(--muted);margin-top:.25rem}
 
-        /* === GLASSMORPHISM === */
-        .glass {
-            background: rgba(255, 255, 255, 0.55);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
+/* ============ STORY ============ */
+.story{background:var(--paper-deep);padding:clamp(4.5rem,9vw,8rem) clamp(20px,4vw,56px);scroll-margin-top:calc(var(--nav-h) + 12px)}
+.story-inner{max-width:1440px;margin:0 auto}
+.pull{
+  font-family:var(--hindi);font-weight:400;
+  font-size:clamp(1.9rem,4vw,3rem);line-height:1.5;
+  max-width:26ch;margin-bottom:clamp(2.5rem,5vw,4rem);text-wrap:balance;
+}
+.pull .q{color:var(--green)}
+.story-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,5vw,5rem);align-items:start}
+.story-grid img{width:100%;aspect-ratio:1/1.04;object-fit:cover}
+.story-grid figcaption{margin-top:.7rem;font-size:.95rem;color:var(--muted);font-style:italic}
+.story-grid .txt h2{font-weight:500;font-size:clamp(2rem,3.6vw,2.9rem);line-height:1.15;letter-spacing:-.015em;margin-bottom:1.2rem;text-wrap:balance}
+.story-grid .txt p{color:var(--muted);margin-bottom:1.2rem;max-width:58ch}
+.story-grid .txt p strong{color:var(--ink);font-weight:600}
 
-        .glass-dark {
-            background: rgba(85, 107, 47, 0.85);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(85, 107, 47, 0.3);
-        }
+/* ============ VISIT: one deep-green band ============ */
+.visit{background:var(--green);color:var(--paper);padding:clamp(4.5rem,9vw,7.5rem) clamp(20px,4vw,56px);scroll-margin-top:calc(var(--nav-h) + 12px)}
+.visit-inner{
+  max-width:1440px;margin:0 auto;
+  display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(2rem,5vw,5rem);align-items:center;
+}
+.visit h2{font-weight:500;font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:1.12;letter-spacing:-.015em;margin-bottom:1.1rem;text-wrap:balance}
+.visit p{color:#E9E2D2;max-width:52ch;margin-bottom:2.2rem}
+.visit .big-call{
+  display:inline-flex;align-items:center;gap:.8rem;
+  background:var(--paper);color:var(--green-deep);text-decoration:none;
+  font-size:clamp(1.3rem,2.4vw,1.8rem);font-weight:600;letter-spacing:.02em;
+  padding:1.1rem 2rem;transition:transform .15s ease,background .25s ease;
+  font-variant-numeric:tabular-nums;
+}
+.visit .big-call:hover{background:#fff}
+.visit .big-call:active{transform:scale(.97)}
+.visit .big-call svg{width:24px;height:24px}
 
-        /* === ANIMATED GRADIENT BORDER === */
-        .gradient-border {
-            position: relative;
-        }
+/* ============ FOOTER ============ */
+footer{background:var(--green-deep);color:#DCD6C4}
+.foot-inner{
+  max-width:1440px;margin:0 auto;
+  padding:clamp(3rem,6vw,4.5rem) clamp(20px,4vw,56px) 2rem;
+  display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:2.5rem;
+}
+.foot-brand .dev{font-family:var(--hindi);font-size:1.6rem;margin-bottom:.4rem;color:var(--paper)}
+.foot-brand p{font-size:1rem;color:#B9B29E;max-width:36ch}
+.foot-col .fh{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:#B9B29E;margin-bottom:1rem;font-weight:500}
+.foot-col ul{list-style:none}
+.foot-col li{margin-bottom:.55rem}
+.foot-col a{color:#DCD6C4;text-decoration:none;font-size:1.02rem}
+.foot-col a:hover{color:var(--paper);text-decoration:underline;text-underline-offset:4px}
+.foot-bottom{
+  max-width:1440px;margin:0 auto;padding:1.4rem clamp(20px,4vw,56px) 2rem;
+  border-top:1px solid rgba(220,214,196,.18);
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  font-size:.92rem;color:#B9B29E;
+}
 
-        .gradient-border::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: inherit;
-            background: linear-gradient(135deg, #DAA520, #556B2F, #DAA520, #8B4513);
-            background-size: 300% 300%;
-            animation: gradientMove 6s ease infinite;
-            z-index: -1;
-        }
+/* ============ DESIGNER ITERATION: signature details ============ */
+.hero h1{font-size:clamp(3.8rem,9.6vw,7.6rem);line-height:1.14}
+.hero>div{position:relative;z-index:2}
+.hero figure{position:relative;z-index:1;margin-left:clamp(-6rem,-6vw,-2rem)}
+/* print-plate frames */
+.plate{border:1px solid var(--ink);padding:12px;background:var(--paper)}
+.plate figcaption{display:flex;gap:.7rem;align-items:baseline;margin-top:.8rem}
+.plate .pno{font-style:normal;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);white-space:nowrap}
+.split img{border:1px solid var(--ink);padding:12px;background:var(--paper)}
+/* hero entrance, part two: faint settle */
+.rise-scale{opacity:0;transform:translateY(26px) scale(1.025)}
+.loaded .rise-scale{opacity:1;transform:none;transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+.loaded .rise-scale.d5{transition-delay:.54s}
+/* section markers: Hindi numerals + hairline */
+.sec-marker{display:flex;align-items:center;gap:1rem;margin-bottom:1.7rem}
+.sec-marker .num{font-family:var(--hindi);font-size:1.1rem;color:var(--green);line-height:1}
+.sec-marker .rule{flex:0 0 72px;height:1px;background:var(--green)}
+.sec-marker .lbl{font-size:.76rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.visit .sec-marker .num{color:var(--paper)}
+.visit .sec-marker .rule{background:var(--paper)}
+.visit .sec-marker .lbl{color:#E9E2D2}
+/* farm: full-bleed media with overlaid Hindi word */
+.farm-media{position:relative;overflow:hidden}
+.farm-media img{width:100%;height:clamp(340px,62vh,600px);object-fit:cover;transform:scale(1.08);will-change:transform}
+.farm-word{position:absolute;left:clamp(20px,4vw,56px);bottom:1.4rem;font-family:var(--hindi);font-size:clamp(5rem,15vw,12rem);line-height:1;color:var(--paper);opacity:.94;pointer-events:none;text-shadow:0 2px 34px rgba(20,30,18,.35)}
+/* story: bigger pull, drop cap */
+.pull{font-size:clamp(2.2rem,4.6vw,3.5rem);line-height:1.55}
+.story-grid .txt p:first-of-type::first-letter{font-weight:500;float:left;font-size:3.3em;line-height:.84;padding:.05em .14em 0 0;color:var(--green)}
+.story-grid figure{border:1px solid var(--ink);padding:12px;background:var(--paper)}
+/* index rows: sliding arrow */
+.index-row{grid-template-columns:76px 1fr auto}
+.index-row .go{font-size:1.5rem;color:var(--green);opacity:0;transform:translateX(-10px);transition:opacity .25s ease,transform .25s ease}
+.index-row:hover .go{opacity:1;transform:none}
+/* footer: giant wordmark */
+.foot-word{font-family:var(--hindi);font-weight:400;font-size:clamp(3.2rem,10.5vw,8.5rem);line-height:1.12;color:var(--paper);max-width:1440px;margin:0 auto;padding:clamp(3rem,6vw,4.5rem) clamp(20px,4vw,56px) 0}
+.foot-bottom a{color:#B9B29E;text-decoration:none}
+.foot-bottom a:hover{color:var(--paper);text-decoration:underline;text-underline-offset:4px}
 
-        @keyframes gradientMove {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        /* === GRADIENT TEXT === */
-        .text-gradient {
-            background: linear-gradient(135deg, #556B2F 0%, #DAA520 50%, #8B4513 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .text-gradient-gold {
-            background: linear-gradient(135deg, #DAA520, #F0C850, #DAA520);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* === GLOW BUTTON === */
-        .glow-btn {
-            background: linear-gradient(135deg, #DAA520, #F0C850);
-            color: #3B2F1E;
-            font-family: 'Epilogue', sans-serif;
-            font-weight: 700;
-            border: none;
-            border-radius: 50px;
-            padding: 14px 36px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 4px 15px rgba(218, 165, 32, 0.25);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .glow-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .glow-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(218, 165, 32, 0.5);
-        }
-
-        .glow-btn:hover::before {
-            left: 100%;
-        }
-
-        /* === NAVBAR === */
-        #main-header {
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        #main-header.scrolled {
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-        }
-
-        .nav-link {
-            position: relative;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            font-family: 'Epilogue', sans-serif;
-            font-weight: 500;
-            font-size: 0.9rem;
-            letter-spacing: 0.02em;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #DAA520, #556B2F);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-
-        .nav-link:hover {
-            color: #DAA520;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-link.active {
-            color: #556B2F;
-        }
-
-        .nav-link.active::after {
-            width: 100%;
-            background: #556B2F;
-        }
-
-        /* === HERO === */
-        .hero-bg {
-            position: relative;
-            min-height: 100vh;
-            overflow: hidden;
-        }
-
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url('https://images.pexels.com/photos/158648/bird-nesting-box-bird-house-garden-158648.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2') center/cover no-repeat;
-            animation: slowZoom 25s ease-in-out infinite alternate;
-            z-index: 0;
-        }
-
-        .hero-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg,
-                    rgba(250, 250, 240, 0.1) 0%,
-                    rgba(250, 250, 240, 0.3) 30%,
-                    rgba(250, 250, 240, 0.5) 60%,
-                    rgba(250, 250, 240, 0.95) 100%);
-            z-index: 1;
-        }
-
-        @keyframes slowZoom {
-            0% {
-                transform: scale(1);
-            }
-
-            100% {
-                transform: scale(1.08);
-            }
-        }
-
-        /* === FLOATING PARTICLES === */
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        /* === PRODUCT SECTIONS === */
-        .product-card {
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            background: white;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-        }
-
-        .product-card img {
-            transition: transform 0.8s ease;
-        }
-
-        .product-card:hover img {
-            transform: scale(1.05);
-        }
-
-        /* === SEASONAL TABS === */
-        .season-tab {
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-
-        .season-tab.active {
-            background: linear-gradient(135deg, #556B2F, #6B8E23);
-            color: #F5F5DC;
-            border-color: #DAA520;
-            box-shadow: 0 4px 15px rgba(85, 107, 47, 0.3);
-        }
-
-        .season-tab:hover:not(.active) {
-            border-color: #DAA520;
-            color: #DAA520;
-        }
-
-        /* === SCROLL REVEAL === */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-        }
-
-        /* === PRELOADER === */
-        #preloader {
-            position: fixed;
-            inset: 0;
-            background: #FAFAF0;
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 24px;
-            transition: opacity 0.6s ease;
-        }
-
-        .loader-ring {
-            width: 48px;
-            height: 48px;
-            border: 3px solid rgba(85, 107, 47, 0.15);
-            border-top-color: #556B2F;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* === PAGE TRANSITION === */
-        #page-curtain {
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(135deg, #FAFAF0, #F5F5DC);
-            z-index: 9999;
-            transform: scaleY(0);
-            transform-origin: top;
-            pointer-events: none;
-        }
-
-        /* === BACK TO TOP === */
-        #back-to-top {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #556B2F, #6B8E23);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            z-index: 1000;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(85, 107, 47, 0.3);
-            border: none;
-        }
-
-        #back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        #back-to-top:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(85, 107, 47, 0.4);
-        }
-
-        /* === SECTION DIVIDER === */
-        .section-divider {
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #DAA520, #556B2F);
-            border-radius: 2px;
-            margin: 0 auto;
-        }
-
-        /* === STAT COUNTER === */
-        .stat-card {
-            text-align: center;
-            padding: 24px;
-        }
-
-        .stat-number {
-            font-family: 'Epilogue', sans-serif;
-            font-weight: 800;
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, #556B2F, #DAA520);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* === QUOTE SECTION === */
-        .quote-mark {
-            font-size: 5rem;
-            line-height: 1;
-            background: linear-gradient(135deg, #DAA520, #F0C850);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-family: Georgia, serif;
-        }
-
-        /* === FOOTER === */
-        footer a {
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: #DAA520;
-        }
-
-        /* === MOBILE MENU === */
-        #mobile-menu a {
-            transition: all 0.3s ease;
-        }
-
-        #mobile-menu a:hover {
-            padding-left: 24px;
-            color: #DAA520;
-        }
-
-        /* === RESPONSIVE === */
-        @media (max-width: 768px) {
-            .stat-number {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
+/* ============ RESPONSIVE ============ */
+@media (max-width:960px){
+  .nav-links,.nav .nav-cta{display:none}
+  .menu-btn{display:block}
+  .mobile-menu{
+    display:block;position:fixed;top:var(--nav-h);left:0;right:0;z-index:49;
+    background:var(--paper);border-bottom:1px solid var(--hairline);
+    padding:1rem clamp(20px,4vw,56px) 1.4rem;
+    transform:translateY(-8px);opacity:0;pointer-events:none;
+    transition:opacity .3s ease,transform .3s ease;
+  }
+  .mobile-menu.open{transform:none;opacity:1;pointer-events:auto}
+  .mobile-menu a{display:block;padding:.8rem 0;text-decoration:none;font-size:1.15rem;border-bottom:1px solid var(--hairline)}
+  .mobile-menu a:last-child{border-bottom:0;color:var(--green);font-weight:600}
+  .hero{grid-template-columns:1fr;min-height:0;padding-top:calc(var(--nav-h) + 3rem)}
+  .hero figure{order:2}
+  .hero figure img{aspect-ratio:4/3}
+  .split{grid-template-columns:1fr}
+  .split img{aspect-ratio:4/3}
+  .split.flip .txt{order:0}
+  .story-grid{grid-template-columns:1fr}
+  .story-grid img{aspect-ratio:4/3;max-width:520px}
+  .visit-inner{grid-template-columns:1fr}
+  .foot-inner{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){
+  .foot-inner{grid-template-columns:1fr}
+  .index-row{grid-template-columns:60px 1fr;gap:1rem}
+  .index-row img{width:60px;height:60px}
+}
+@media (max-width:960px){
+  .hero figure{margin-left:0}
+  .farm-word{left:20px}
+}
+@media (max-width:600px){
+  .index-row{grid-template-columns:60px 1fr auto}
+  .foot-word{font-size:clamp(2.6rem,15vw,4rem)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .rise,[data-reveal]{opacity:1!important;transform:none!important}
+}
+</style>
 </head>
+<body>
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav" aria-label="Main navigation">
+  <a class="brand" href="#top" aria-label="Ram Nayan Dairy — home">
+    <span class="dev" lang="hi">राम नयन</span>
+    <span class="lat">Dairy</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#dairy">Dairy</a></li>
+    <li><a href="#farm">Farm</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#visit">Visit</a></li>
+  </ul>
+  <a class="nav-cta" href="tel:+919987693560">
+    <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16-16H56a16,16,0,0,0-16,16c0,105.87,86.13,192,192,192a16,16,0,0,0,16-16V174.38A16,16,0,0,0,222.37,158.46Z"/></svg>
+    Call the dairy
+  </a>
+  <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+    <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"/></svg>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#dairy">Dairy</a>
+  <a href="#farm">Farm</a>
+  <a href="#story">Our Story</a>
+  <a href="#visit">Visit</a>
+  <a href="tel:+919987693560">Call 99876 93560</a>
+</div>
 
-<body class="antialiased opacity-0">
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div>
+    <div class="hero-kicker-line rise" aria-hidden="true"></div>
+    <h1 class="rise d1" lang="hi">राम नयन डेयरी</h1>
+    <p class="latin-line rise d2">Milk, the way it was meant to be.</p>
+    <p class="sub rise d3">Fresh milk, ghee, paneer and more, made every day on our family farm, from our cows to your home.</p>
+    <a class="btn rise d4" href="#dairy">
+      See the dairy
+      <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.49a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg>
+    </a>
+  </div>
+  <figure class="rise-scale d5 plate">
+    <img class="photo" src="images/pure_ghee.png" alt="A brass bowl of freshly made ghee on a wooden table" fetchpriority="high">
+    <figcaption><span class="pno">Plate I</span><span>Ghee, simmered slow in small batches.</span></figcaption>
+  </figure>
+</header>
 
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="loader-ring"></div>
-        <p class="font-heading text-olive text-sm tracking-widest uppercase">RamNayan</p>
+<!-- ============ DAIRY ============ -->
+<section class="section" id="dairy" aria-labelledby="dairy-h">
+  <div class="sec-head" data-reveal>
+    <div class="sec-marker"><span class="num" lang="hi">०१</span><span class="rule" aria-hidden="true"></span><span class="lbl">डेयरी</span></div>
+    <h2 id="dairy-h">The Dairy</h2>
+    <p>Made on the farm in small batches, from the milk of our own cows. No shortcuts, just the way it has always been done.</p>
+  </div>
+
+  <div class="split" data-reveal>
+    <img class="photo" src="images/pure_ghee.png" alt="Brass bowl of golden ghee" loading="lazy">
+    <div class="txt">
+      <h3>Pure Ghee</h3>
+      <p>Simmered slow the traditional way until it turns golden and nutty. The one thing every Indian kitchen judges everything else by, and the thing we are proudest of.</p>
     </div>
+  </div>
 
-    <!-- Page Transition Curtain -->
-    <div id="page-curtain"></div>
+  <div class="split flip" data-reveal>
+    <img class="photo" src="images/creamy_dahi.png" alt="Bowl of thick creamy dahi" loading="lazy">
+    <div class="txt">
+      <h3>Creamy Dahi</h3>
+      <p>Set fresh every morning and cultured the slow way. Thick enough to hold a spoon upright, with the clean tang that only fresh culture gives.</p>
+    </div>
+  </div>
 
-    <!-- Header & Navigation -->
-    <header id="main-header" class="glass fixed top-4 left-4 right-4 z-50 rounded-2xl">
-        <nav class="container mx-auto px-6 py-3.5 flex justify-between items-center">
-            <a class="nav-link font-heading text-xl font-extrabold tracking-tight" style="color: #556B2F;"
-                data-page="home">
-                <span class="text-gradient">Ram</span><span style="color: #DAA520;">Nayan</span>
-            </a>
+  <div class="index" data-reveal>
+    <a class="index-row" href="#visit">
+      <img class="photo" src="images/fresh_paneer.png" alt="Fresh paneer" loading="lazy">
+      <div><h3>Fresh Paneer</h3><p>Made daily from full-fat milk. Soft, fresh, and rich in protein.</p></div>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="index-row" href="#visit">
+      <img class="photo" src="images/handcrafted_peda.png" alt="Handcrafted peda" loading="lazy">
+      <div><h3>Handcrafted Peda</h3><p>Slow-cooked milk and cardamom. Made for celebrations, and for ordinary days too.</p></div>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="index-row" href="#visit">
+      <img class="photo" src="images/wholesome_lassi.png" alt="Glass of wholesome lassi" loading="lazy">
+      <div><h3>Wholesome Lassi</h3><p>Creamy dahi, lightly sweetened. The way summer is supposed to taste.</p></div>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="index-row" href="#visit">
+      <img class="photo" src="images/churned_buttermilk.png" alt="Churned buttermilk" loading="lazy">
+      <div><h3>Churned Buttermilk</h3><p>Thin, tangy, spiced with roasted cumin. Good for the stomach.</p></div>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+    <a class="index-row" href="#visit">
+      <img class="photo" src="images/traditional_kulfi.png" alt="Traditional kulfi" loading="lazy">
+      <div><h3>Traditional Kulfi</h3><p>Reduced milk, cardamom, saffron. Dense, slow, and worth the wait.</p></div>
+      <span class="go" aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+</section>
 
-            <div class="hidden md:flex items-center space-x-8">
-                <a class="nav-link active" data-page="home">Home</a>
-                <a class="nav-link" data-page="dairy">Dairy & Milk</a>
-                <a class="nav-link" data-page="farm">Farm & Garden</a>
-                <a class="nav-link" data-page="farmstay">The Farm Stay</a>
-                <a class="nav-link" data-page="about">About Us</a>
-            </div>
+<!-- ============ FARM ============ -->
+<section class="farm-break" id="farm" aria-labelledby="farm-h">
+  <div class="farm-media" data-reveal>
+    <img class="photo" id="farmImg" src="images/farm_landscape.png" alt="Green fields of the Ram Nayan farm" loading="lazy">
+    <span class="farm-word" lang="hi" aria-hidden="true">मिट्टी</span>
+  </div>
+  <div class="farm-body">
+    <div class="sec-marker" data-reveal><span class="num" lang="hi">०२</span><span class="rule" aria-hidden="true"></span><span class="lbl">खेत</span></div>
+    <h2 id="farm-h" data-reveal>Healthy milk starts with healthy soil.</h2>
+    <p data-reveal>We feed our fields with vermicompost and natural fertiliser made right here on the farm. Nothing synthetic, nothing rushed. What grows in this soil feeds our cows, and our cows feed you.</p>
+    <ul class="farm-outputs" data-reveal>
+      <li>Vermicompost<span>Rich, living compost from our own beds.</span></li>
+      <li>Natural fertiliser<span>Made on the farm, for the farm.</span></li>
+      <li>Seasonal produce<span>Whatever the field is giving, we share.</span></li>
+    </ul>
+  </div>
+</section>
 
-            <div class="md:hidden">
-                <button id="mobile-menu-btn" class="text-olive p-2 rounded-lg hover:bg-olive/5 transition-colors"
-                    aria-label="Menu">
-                    <span class="material-symbols-rounded text-2xl">menu</span>
-                </button>
-            </div>
-        </nav>
+<!-- ============ STORY ============ -->
+<section class="story" id="story" aria-labelledby="story-h">
+  <div class="story-inner">
+    <div class="sec-marker" data-reveal><span class="num" lang="hi">०३</span><span class="rule" aria-hidden="true"></span><span class="lbl">कहानी</span></div>
+    <p class="pull" lang="hi" data-reveal><span class="q">&ldquo;</span>कोई काम छोटा या बड़ा नहीं होता। काम काम होता है, और हम हर काम का सम्मान करते हैं।<span class="q">&rdquo;</span></p>
+    <div class="story-grid">
+      <figure class="plate" data-reveal>
+        <img class="photo" src="images/founder_portrait.jpg" alt="S. S. Chaurasia, founder of Ram Nayan Dairy" loading="lazy">
+        <figcaption><span class="pno">Plate II</span><span>S. S. Chaurasia, founder.</span></figcaption>
+      </figure>
+      <div class="txt" data-reveal>
+        <h2 id="story-h">From a corporate desk to an open field.</h2>
+        <p><strong>S. S. Chaurasia</strong> spent years as an engineer, a life of precision, deadlines and success. Then he left the desk for the field and came home to the food he grew up with.</p>
+        <p>Ram Nayan Dairy is that return: milk from healthy cows, soil fed the natural way, and products made slowly, by hand, every single day. His rule is simple, and it runs the whole farm: no work is small or big. Work is work, and every kind of work deserves respect.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <div class="border-t border-olive/10 pt-4 space-y-1">
-                <a class="block py-2.5 px-4 rounded-lg nav-link text-sm" data-page="home">Home</a>
-                <a class="block py-2.5 px-4 rounded-lg nav-link text-sm" data-page="dairy">Dairy & Milk</a>
-                <a class="block py-2.5 px-4 rounded-lg nav-link text-sm" data-page="farm">Farm & Garden</a>
-                <a class="block py-2.5 px-4 rounded-lg nav-link text-sm" data-page="farmstay">The Farm Stay</a>
-                <a class="block py-2.5 px-4 rounded-lg nav-link text-sm" data-page="about">About Us</a>
-            </div>
-        </div>
-    </header>
+<!-- ============ VISIT ============ -->
+<section class="visit" id="visit" aria-labelledby="visit-h">
+  <div class="visit-inner">
+    <div data-reveal>
+      <div class="sec-marker"><span class="num" lang="hi">०४</span><span class="rule" aria-hidden="true"></span><span class="lbl">पधारिए</span></div>
+      <h2 id="visit-h">Come see the farm.</h2>
+      <p>Stay a day, walk the fields, eat with us. Every visit and booking is handled directly by the family, so call S.&nbsp;S.&nbsp;Chaurasia to plan yours.</p>
+    </div>
+    <div data-reveal>
+      <a class="big-call" href="tel:+919987693560">
+        <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16-16H56a16,16,0,0,0-16,16c0,105.87,86.13,192,192,192a16,16,0,0,0,16-16V174.38A16,16,0,0,0,222.37,158.46Z"/></svg>
+        99876 93560
+      </a>
+    </div>
+  </div>
+</section>
 
-    <!-- Main Content Area -->
-    <main id="main-content"></main>
+<!-- ============ FOOTER ============ -->
+<footer>
+  <p class="foot-word" lang="hi" data-reveal>राम नयन डेयरी</p>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <p class="dev" lang="hi">राम नयन डेयरी</p>
+      <p>A family dairy. Fresh milk and honest food, from our farm to your home.</p>
+    </div>
+    <div class="foot-col">
+      <h2 class="fh">Explore</h2>
+      <ul>
+        <li><a href="#dairy">The Dairy</a></li>
+        <li><a href="#farm">The Farm</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h2 class="fh">Contact</h2>
+      <ul>
+        <li><a href="tel:+919987693560">99876 93560</a></li>
+        <li>S. S. Chaurasia, Founder</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>&copy; Ram Nayan Dairy. All rights reserved.</span>
+    <span>Made with patience, on the farm.</span>
+    <a href="#top">Back to top &uarr;</a>
+  </div>
+</footer>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" aria-label="Back to top">
-        <span class="material-symbols-rounded">arrow_upward</span>
-    </button>
+<script>
+/* ===== Lenis smooth scroll (vendored, 1.0.34) ===== */
+var t,e;t=this,e=function(){function t(t,e,i){return Math.max(t,Math.min(e,i))}class Animate{advance(e){if(!this.isRunning)return;let i=!1;if(this.lerp)this.value=(s=this.value,o=this.to,n=60*this.lerp,r=e,function(t,e,i){return(1-i)*t+i*e}(s,o,1-Math.exp(-n*r))),Math.round(this.value)===this.to&&(this.value=this.to,i=!0);else{this.currentTime+=e;const s=t(0,this.currentTime/this.duration,1);i=s>=1;const o=i?1:this.easing(s);this.value=this.from+(this.to-this.from)*o}var s,o,n,r;this.onUpdate?.(this.value,i),i&&this.stop()}stop(){this.isRunning=!1}fromTo(t,e,{lerp:i=.1,duration:s=1,easing:o=(t=>t),onStart:n,onUpdate:r}){this.from=this.value=t,this.to=e,this.lerp=i,this.duration=s,this.easing=o,this.currentTime=0,this.isRunning=!0,n?.(),this.onUpdate=r}}class Dimensions{constructor({wrapper:t,content:e,autoResize:i=!0}={}){if(this.wrapper=t,this.content=e,i){const t=function(t,e){let i;return function(){let e=arguments,s=this;clearTimeout(i),i=setTimeout((function(){t.apply(s,e)}),250)}}(this.resize);this.wrapper!==window&&(this.wrapperResizeObserver=new ResizeObserver(t),this.wrapperResizeObserver.observe(this.wrapper)),this.contentResizeObserver=new ResizeObserver(t),this.contentResizeObserver.observe(this.content)}this.resize()}destroy(){this.wrapperResizeObserver?.disconnect(),this.contentResizeObserver?.disconnect()}resize=()=>{this.onWrapperResize(),this.onContentResize()};onWrapperResize=()=>{this.wrapper===window?(this.width=window.innerWidth,this.height=window.innerHeight):(this.width=this.wrapper.clientWidth,this.height=this.wrapper.clientHeight)};onContentResize=()=>{this.scrollHeight=this.content.scrollHeight,this.scrollWidth=this.content.scrollWidth};get limit(){return{x:this.scrollWidth-this.width,y:this.scrollHeight-this.height}}}class Emitter{constructor(){this.events={}}emit(t,...e){let i=this.events[t]||[];for(let t=0,s=i.length;t<s;t++)i[t](...e)}on(t,e){return this.events[t]?.push(e)||(this.events[t]=[e]),()=>{this.events[t]=this.events[t]?.filter((t=>e!==t))}}off(t,e){this.events[t]=this.events[t]?.filter((t=>e!==t))}destroy(){this.events={}}}class VirtualScroll{constructor(t,{wheelMultiplier:e=1,touchMultiplier:i=2,normalizeWheel:s=!1}){this.element=t,this.wheelMultiplier=e,this.touchMultiplier=i,this.normalizeWheel=s,this.touchStart={x:null,y:null},this.emitter=new Emitter,this.element.addEventListener("wheel",this.onWheel,{passive:!1}),this.element.addEventListener("touchstart",this.onTouchStart,{passive:!1}),this.element.addEventListener("touchmove",this.onTouchMove,{passive:!1}),this.element.addEventListener("touchend",this.onTouchEnd,{passive:!1})}on(t,e){return this.emitter.on(t,e)}destroy(){this.emitter.destroy(),this.element.removeEventListener("wheel",this.onWheel,{passive:!1}),this.element.removeEventListener("touchstart",this.onTouchStart,{passive:!1}),this.element.removeEventListener("touchmove",this.onTouchMove,{passive:!1}),this.element.removeEventListener("touchend",this.onTouchEnd,{passive:!1})}onTouchStart=t=>{const{clientX:e,clientY:i}=t.targetTouches?t.targetTouches[0]:t;this.touchStart.x=e,this.touchStart.y=i,this.lastDelta={x:0,y:0},this.emitter.emit("scroll",{deltaX:0,deltaY:0,event:t})};onTouchMove=t=>{const{clientX:e,clientY:i}=t.targetTouches?t.targetTouches[0]:t,s=-(e-this.touchStart.x)*this.touchMultiplier,o=-(i-this.touchStart.y)*this.touchMultiplier;this.touchStart.x=e,this.touchStart.y=i,this.lastDelta={x:s,y:o},this.emitter.emit("scroll",{deltaX:s,deltaY:o,event:t})};onTouchEnd=t=>{this.emitter.emit("scroll",{deltaX:this.lastDelta.x,deltaY:this.lastDelta.y,event:t})};onWheel=e=>{let{deltaX:i,deltaY:s}=e;this.normalizeWheel&&(i=t(-100,i,100),s=t(-100,s,100)),i*=this.wheelMultiplier,s*=this.wheelMultiplier,this.emitter.emit("scroll",{deltaX:i,deltaY:s,event:e})}}return class Lenis{constructor({wrapper:t=window,content:e=document.documentElement,wheelEventsTarget:i=t,eventsTarget:s=i,smoothWheel:o=!0,syncTouch:n=!1,syncTouchLerp:r=.075,touchInertiaMultiplier:l=35,duration:h,easing:a=(t=>Math.min(1,1.001-Math.pow(2,-10*t))),lerp:c=!h&&.1,infinite:p=!1,orientation:u="vertical",gestureOrientation:d="vertical",touchMultiplier:m=1,wheelMultiplier:g=1,normalizeWheel:v=!1,autoResize:S=!0}={}){window.lenisVersion="1.0.34",t!==document.documentElement&&t!==document.body||(t=window),this.options={wrapper:t,content:e,wheelEventsTarget:i,eventsTarget:s,smoothWheel:o,syncTouch:n,syncTouchLerp:r,touchInertiaMultiplier:l,duration:h,easing:a,lerp:c,infinite:p,gestureOrientation:d,orientation:u,touchMultiplier:m,wheelMultiplier:g,normalizeWheel:v,autoResize:S},this.animate=new Animate,this.emitter=new Emitter,this.dimensions=new Dimensions({wrapper:t,content:e,autoResize:S}),this.toggleClass("lenis",!0),this.velocity=0,this.isLocked=!1,this.isStopped=!1,this.isSmooth=n||o,this.isScrolling=!1,this.targetScroll=this.animatedScroll=this.actualScroll,this.options.wrapper.addEventListener("scroll",this.onNativeScroll,{passive:!1}),this.virtualScroll=new VirtualScroll(s,{touchMultiplier:m,wheelMultiplier:g,normalizeWheel:v}),this.virtualScroll.on("scroll",this.onVirtualScroll)}destroy(){this.emitter.destroy(),this.options.wrapper.removeEventListener("scroll",this.onNativeScroll,{passive:!1}),this.virtualScroll.destroy(),this.dimensions.destroy(),this.toggleClass("lenis",!1),this.toggleClass("lenis-smooth",!1),this.toggleClass("lenis-scrolling",!1),this.toggleClass("lenis-stopped",!1),this.toggleClass("lenis-locked",!1)}on(t,e){return this.emitter.on(t,e)}off(t,e){return this.emitter.off(t,e)}setScroll(t){this.isHorizontal?this.rootElement.scrollLeft=t:this.rootElement.scrollTop=t}onVirtualScroll=({deltaX:t,deltaY:e,event:i})=>{if(i.ctrlKey)return;const s=i.type.includes("touch"),o=i.type.includes("wheel");if(this.options.syncTouch&&s&&"touchstart"===i.type)return void this.reset();const n=0===t&&0===e,r="vertical"===this.options.gestureOrientation&&0===e||"horizontal"===this.options.gestureOrientation&&0===t;if(n||r)return;let l=i.composedPath();if(l=l.slice(0,l.indexOf(this.rootElement)),l.find((t=>t.hasAttribute?.("data-lenis-prevent")||s&&t.hasAttribute?.("data-lenis-prevent-touch")||o&&t.hasAttribute?.("data-lenis-prevent-wheel")||t.classList?.contains("lenis"))))return;if(this.isStopped||this.isLocked)return void i.preventDefault();if(this.isSmooth=this.options.syncTouch&&s||this.options.smoothWheel&&o,!this.isSmooth)return this.isScrolling=!1,void this.animate.stop();i.preventDefault();let h=e;"both"===this.options.gestureOrientation?h=Math.abs(e)>Math.abs(t)?e:t:"horizontal"===this.options.gestureOrientation&&(h=t);const a=s&&this.options.syncTouch,c=s&&"touchend"===i.type&&Math.abs(h)>5;c&&(h=this.velocity*this.options.touchInertiaMultiplier),this.scrollTo(this.targetScroll+h,{programmatic:!1,...a?{lerp:c?this.options.syncTouchLerp:1}:{lerp:this.options.lerp,duration:this.options.duration,easing:this.options.easing}})};resize(){this.dimensions.resize()}emit(){this.emitter.emit("scroll",this)}onNativeScroll=()=>{if(!this.__preventNextScrollEvent&&!this.isScrolling){const t=this.animatedScroll;this.animatedScroll=this.targetScroll=this.actualScroll,this.velocity=0,this.direction=Math.sign(this.animatedScroll-t),this.emit()}};reset(){this.isLocked=!1,this.isScrolling=!1,this.animatedScroll=this.targetScroll=this.actualScroll,this.velocity=0,this.animate.stop()}start(){this.isStopped=!1,this.reset()}stop(){this.isStopped=!0,this.animate.stop(),this.reset()}raf(t){const e=t-(this.time||t);this.time=t,this.animate.advance(.001*e)}scrollTo(e,{offset:i=0,immediate:s=!1,lock:o=!1,duration:n=this.options.duration,easing:r=this.options.easing,lerp:l=!n&&this.options.lerp,onComplete:h=null,force:a=!1,programmatic:c=!0}={}){if(!this.isStopped&&!this.isLocked||a){if(["top","left","start"].includes(e))e=0;else if(["bottom","right","end"].includes(e))e=this.limit;else{let t;if("string"==typeof e?t=document.querySelector(e):e?.nodeType&&(t=e),t){if(this.options.wrapper!==window){const t=this.options.wrapper.getBoundingClientRect();i-=this.isHorizontal?t.left:t.top}const s=t.getBoundingClientRect();e=(this.isHorizontal?s.left:s.top)+this.animatedScroll}}if("number"==typeof e){if(e+=i,e=Math.round(e),this.options.infinite?c&&(this.targetScroll=this.animatedScroll=this.scroll):e=t(0,e,this.limit),s)return this.animatedScroll=this.targetScroll=e,this.setScroll(this.scroll),this.reset(),void h?.(this);if(!c){if(e===this.targetScroll)return;this.targetScroll=e}this.animate.fromTo(this.animatedScroll,e,{duration:n,easing:r,lerp:l,onStart:()=>{o&&(this.isLocked=!0),this.isScrolling=!0},onUpdate:(t,e)=>{this.isScrolling=!0,this.velocity=t-this.animatedScroll,this.direction=Math.sign(this.velocity),this.animatedScroll=t,this.setScroll(this.scroll),c&&(this.targetScroll=t),e||this.emit(),e&&(this.reset(),this.emit(),h?.(this),this.__preventNextScrollEvent=!0,requestAnimationFrame((()=>{delete this.__preventNextScrollEvent})))}})}}}get rootElement(){return this.options.wrapper===window?document.documentElement:this.options.wrapper}get limit(){return this.dimensions.limit[this.isHorizontal?"x":"y"]}get isHorizontal(){return"horizontal"===this.options.orientation}get actualScroll(){return this.isHorizontal?this.rootElement.scrollLeft:this.rootElement.scrollTop}get scroll(){return this.options.infinite?(this.animatedScroll%(t=this.limit)+t)%t:this.animatedScroll;var t}get progress(){return 0===this.limit?1:this.scroll/this.limit}get isSmooth(){return this.__isSmooth}set isSmooth(t){this.__isSmooth!==t&&(this.__isSmooth=t,this.toggleClass("lenis-smooth",t))}get isScrolling(){return this.__isScrolling}set isScrolling(t){this.__isScrolling!==t&&(this.__isScrolling=t,this.toggleClass("lenis-scrolling",t))}get isStopped(){return this.__isStopped}set isStopped(t){this.__isStopped!==t&&(this.__isStopped=t,this.toggleClass("lenis-stopped",t))}get isLocked(){return this.__isLocked}set isLocked(t){this.__isLocked!==t&&(this.__isLocked=t,this.toggleClass("lenis-locked",t))}get className(){let t="lenis";return this.isStopped&&(t+=" lenis-stopped"),this.isLocked&&(t+=" lenis-locked"),this.isScrolling&&(t+=" lenis-scrolling"),this.isSmooth&&(t+=" lenis-smooth"),t}toggleClass(t,e){this.rootElement.classList.toggle(t,e),this.emitter.emit("className change",this)}}},"object"==typeof exports&&"undefined"!=typeof module?module.exports=e():"function"==typeof define&&define.amd?define(e):(t="undefined"!=typeof globalThis?globalThis:t||self).Lenis=e();
 
-    <!-- Footer -->
-    <footer class="relative z-10 bg-gradient-to-b from-olive-dark to-olive text-white"
-        style="background: linear-gradient(180deg, #3B4D1F, #556B2F);">
-        <div class="container mx-auto px-6 py-16">
-            <div class="grid md:grid-cols-4 gap-12">
-                <!-- Brand -->
-                <div class="md:col-span-1">
-                    <h3 class="font-heading text-2xl font-extrabold">
-                        <span style="color: #F5F5DC;">Ram</span><span style="color: #DAA520;">Nayan</span>
-                    </h3>
-                    <p class="mt-3 text-sm text-gray-300 leading-relaxed">Bridging the gap between traditional wisdom
-                        and modern living through organic excellence.</p>
-                    <div class="flex gap-3 mt-5">
-                        <a href="#"
-                            class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition-colors">
-                            <span class="material-symbols-rounded text-sm">share</span>
-                        </a>
-                        <a href="#"
-                            class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition-colors">
-                            <span class="material-symbols-rounded text-sm">mail</span>
-                        </a>
-                        <a href="#"
-                            class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition-colors">
-                            <span class="material-symbols-rounded text-sm">location_on</span>
-                        </a>
-                    </div>
-                </div>
-                <!-- Our Offerings -->
-                <div>
-                    <h4 class="font-heading text-sm uppercase tracking-widest text-gold mb-4">Our Offerings</h4>
-                    <ul class="space-y-2.5 text-sm text-gray-300">
-                        <li><a href="#" class="nav-link" data-page="dairy">Pure Ghee</a></li>
-                        <li><a href="#" class="nav-link" data-page="dairy">Organic Dahi</a></li>
-                        <li><a href="#" class="nav-link" data-page="farm">Vermicompost</a></li>
-                        <li><a href="#" class="nav-link" data-page="farm">Fresh Produce</a></li>
-                    </ul>
-                </div>
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="font-heading text-sm uppercase tracking-widest text-gold mb-4">Quick Links</h4>
-                    <ul class="space-y-2.5 text-sm text-gray-300">
-                        <li><a href="#" class="nav-link" data-page="about">Our Story</a></li>
-                        <li><a href="#" class="nav-link" data-page="farmstay">Farm Visit</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Use</a></li>
-                    </ul>
-                </div>
-                <!-- Contact -->
-                <div>
-                    <h4 class="font-heading text-sm uppercase tracking-widest text-gold mb-4">Contact</h4>
-                    <div class="space-y-3 text-sm text-gray-300">
-                        <div class="flex items-start gap-2">
-                            <span class="material-symbols-rounded text-gold text-base mt-0.5">person</span>
-                            <span>S.S. Chaurasia</span>
-                        </div>
-                        <div class="flex items-start gap-2">
-                            <span class="material-symbols-rounded text-gold text-base mt-0.5">call</span>
-                            <a href="tel:9987693560" class="hover:text-gold transition-colors">9987693560</a>
-                        </div>
-                        <div class="flex items-start gap-2">
-                            <span class="material-symbols-rounded text-gold text-base mt-0.5">eco</span>
-                            <span>100% Organic & Natural</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-xs text-gray-400">&copy; 2024 RamNayan Organic Farms. All rights reserved.</p>
-                <p class="text-xs text-gray-400">Designed for Purity.</p>
-            </div>
-        </div>
-    </footer>
+</script>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    <script>
-        function init() {
-            const mainContent = document.getElementById('main-content');
-            const mainHeader = document.getElementById('main-header');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const backToTopBtn = document.getElementById('back-to-top');
-            const pageCurtain = document.getElementById('page-curtain');
+  /* Lenis: butter-smooth, restrained */
+  var lenis = null;
+  if (!reduce && typeof Lenis !== 'undefined') {
+    lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+    var raf = function(time){ lenis.raf(time); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+  }
 
-            let lenis;
+  /* Anchor links glide via Lenis, fall back to native */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if (id.length < 2) return;
+      var el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      closeMenu();
+      if (lenis) lenis.scrollTo(el, { offset: -70, duration: 1.4 });
+      else el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+    });
+  });
 
-            // --- Smooth Scrolling ---
-            function setupSmooth() {
-                lenis = new Lenis({ lerp: 0.08 });
-                lenis.on('scroll', ScrollTrigger.update);
-                gsap.ticker.add((time) => lenis.raf(time * 1000));
-                gsap.ticker.lagSmoothing(0);
-            }
+  /* Nav border on scroll */
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 24); };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
-            // --- Product Data ---
-            const dairyProducts = [
-                { name: 'Pure Ghee', desc: 'Crafted from simmered butter, our golden ghee has a rich, nutty aroma and is a cornerstone of a healthy kitchen.', icon: 'local_fire_department', color: '#DAA520', image: 'images/pure_ghee.png' },
-                { name: 'Creamy Dahi', desc: 'Thick, creamy, and teeming with probiotics, our dahi is cultured fresh for a tangy, wholesome taste.', icon: 'breakfast_dining', color: '#F0C850', image: 'images/creamy_dahi.png' },
-                { name: 'Handcrafted Peda', desc: 'A taste of celebration, our peda is made from slow-cooked milk and cardamom, melting with authentic sweetness.', icon: 'cookie', color: '#B8860B', image: 'images/handcrafted_peda.png' },
-                { name: 'Fresh Paneer', desc: 'Soft, spongy, and rich in protein. Our paneer is made daily from pure, full-fat milk.', icon: 'set_meal', color: '#556B2F', image: 'images/fresh_paneer.png' },
-                { name: 'Wholesome Lassi', desc: 'A refreshing blend of our creamy dahi and pure water, lightly sweetened for the perfect cooling drink.', icon: 'local_cafe', color: '#6B8E23', image: 'images/wholesome_lassi.png' },
-                { name: 'Churned Buttermilk', desc: 'The traditional, light, and tangy drink, spiced with roasted cumin. A perfect digestif.', icon: 'water_drop', color: '#87CEEB', image: 'images/churned_buttermilk.png' },
-                { name: 'Traditional Kulfi', desc: 'Rich, reduced milk flavored with cardamom and saffron. No shortcuts, just pure indulgence.', icon: 'icecream', color: '#DEB887', image: 'images/traditional_kulfi.png' }
-            ];
+  /* Farm image: faint parallax, authored and restrained */
+  var farmImg = document.getElementById('farmImg');
+  if (!reduce && farmImg) {
+    var farmTick = function(){
+      var r = farmImg.getBoundingClientRect(), vh = window.innerHeight;
+      if (r.bottom > 0 && r.top < vh) {
+        var off = (r.top + r.height / 2 - vh / 2) * -0.06;
+        farmImg.style.transform = 'translateY(' + off.toFixed(1) + 'px) scale(1.08)';
+      }
+    };
+    window.addEventListener('scroll', function(){ requestAnimationFrame(farmTick); }, { passive: true });
+    farmTick();
+  }
 
-            const farmProducts = [
-                { name: 'Vermicompost', desc: "Often called 'black gold,' this is the result of earthworms transforming organic matter into the richest natural fertilizer.", icon: 'compost', color: '#3B4D1F', image: 'images/vermicompost.png' },
-                { name: 'Natural Compost', desc: "Our signature blend of farm-grown organic matter, patiently decomposed to perfection for strong soil structure.", icon: 'yard', color: '#556B2F', image: 'images/natural_compost.png' },
-                { name: 'Liquid Fertiliser', desc: "A potent, all-natural 'compost tea' brewed to perfection, providing an instant boost of microbial life.", icon: 'science', color: '#6B8E23', image: 'images/liquid_fertiliser.png' },
-                { name: 'Fresh Lemons', desc: "Grown without chemical intervention and ripened under the warm sun. Bursting with zesty, aromatic juice.", icon: 'spa', color: '#DAA520', image: 'images/fresh_lemons.png' },
-                { name: 'Sweet Guavas', desc: "Picked at the peak of fragrance and sweetness. Incredibly aromatic, rich in vitamins, and a pure delight.", icon: 'nutrition', color: '#8FBC8F', image: 'images/sweet_guavas.png' }
-            ];
+  /* Mobile menu */
+  var btn = document.getElementById('menuBtn'), menu = document.getElementById('mobileMenu');
+  function closeMenu(){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+  btn.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
 
-            const seasonalData = {
-                summer: {
-                    image: 'images/summer_farm.png',
-                    title: 'Golden Harvests & Sun-kissed Mornings',
-                    text: "Summer at RamNayan is a time of vibrant life. The sun ripens our sweetest guavas and lemons. It's the perfect season for enjoying fresh, cooling lassi and buttermilk, made daily. Join us for early morning walks to beat the heat.",
-                    icon: 'wb_sunny',
-                    color: '#DAA520'
-                },
-                monsoon: {
-                    image: 'images/monsoon_farm.png',
-                    title: 'Lush Greens & Renewed Earth',
-                    text: "The monsoon transforms the farm into a lush, green paradise. The rain rejuvenates the soil, making it the ideal time for planting and composting. Experience the magic of petrichor and see our natural fertilizer production.",
-                    icon: 'water',
-                    color: '#556B2F'
-                },
-                winter: {
-                    image: 'images/winter_farm.jpg',
-                    title: 'Misty Mornings & Warm Traditions',
-                    text: "Winter brings cool, misty mornings and pleasant days. It's the best time for hands-on farming activities. Enjoy the rich, warming flavors of our pure ghee and handcrafted peda — perfect for the cozy weather.",
-                    icon: 'ac_unit',
-                    color: '#87CEEB'
-                }
-            };
+  /* One-time gentle reveals */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
 
-            // --- Product Card Generator ---
-            function createProductCard(product, index) {
-                const isAlt = index % 2 !== 0;
-                return `
-                <div class="product-card reveal flex flex-col ${isAlt ? 'md:flex-row-reverse' : 'md:flex-row'} items-stretch">
-                    <div class="md:w-1/2 relative overflow-hidden" style="min-height: 320px;">
-                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover" style="min-height: 320px;" loading="lazy">
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <div class="glass rounded-xl px-4 py-3 inline-flex items-center gap-2">
-                                <span class="material-symbols-rounded text-sm" style="color: ${product.color};">verified</span>
-                                <span class="font-heading text-xs font-semibold text-olive">100% Organic</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: ${product.color}20;">
-                                <span class="material-symbols-rounded" style="color: ${product.color};">${product.icon}</span>
-                            </div>
-                            <span class="font-heading text-xs uppercase tracking-widest text-gray-400">Premium Quality</span>
-                        </div>
-                        <h3 class="text-3xl font-heading text-olive">${product.name}</h3>
-                        <p class="mt-4 text-gray-600 leading-relaxed">${product.desc}</p>
-                        <div class="mt-6 flex items-center gap-2 text-gold font-heading text-sm font-semibold cursor-pointer group">
-                            <span>Learn More</span>
-                            <span class="material-symbols-rounded text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-            }
-
-            // --- Page Templates ---
-            const pages = {
-                home: `
-                <!-- Hero Section -->
-                <section class="hero-bg flex items-center justify-center text-center">
-                    <div id="particles-container" class="absolute inset-0 z-[2] pointer-events-none"></div>
-                    <div class="relative z-10 max-w-4xl mx-auto px-6 py-20">
-                        <div class="glass gradient-border rounded-3xl p-10 md:p-16">
-                            <div class="flex items-center justify-center gap-2 mb-6">
-                                <span class="material-symbols-rounded text-gold text-sm">eco</span>
-                                <span class="font-heading text-xs uppercase tracking-[0.2em] text-olive">Organic & Pure Since Inception</span>
-                                <span class="material-symbols-rounded text-gold text-sm">eco</span>
-                            </div>
-                            <h1 class="text-5xl md:text-7xl font-heading font-extrabold text-gradient leading-tight">
-                                RamNayan
-                            </h1>
-                            <p class="text-2xl md:text-3xl font-heading font-semibold text-olive/70 mt-2">Nature's Purity</p>
-                            <div class="section-divider mt-6"></div>
-                            <p class="mt-6 text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-                                From our soil to your soul — experience the two worlds of RamNayan. One rich with pure dairy tradition, the other rooted deep in fertile earth.
-                            </p>
-                            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-                                <button class="glow-btn nav-link" data-page="dairy">
-                                    <span class="flex items-center gap-2">
-                                        <span class="material-symbols-rounded text-sm">breakfast_dining</span>
-                                        Explore Dairy
-                                    </span>
-                                </button>
-                                <button class="glow-btn nav-link" data-page="farm" style="background: linear-gradient(135deg, #556B2F, #6B8E23); color: white;">
-                                    <span class="flex items-center gap-2">
-                                        <span class="material-symbols-rounded text-sm">yard</span>
-                                        Discover Farm
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Stats Bar -->
-                <section class="relative z-10 bg-white py-12 border-y border-gray-100">
-                    <div class="container mx-auto px-6">
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                            <div class="stat-card reveal">
-                                <div class="stat-number">100%</div>
-                                <p class="text-sm text-gray-500 mt-1 font-heading font-medium">Organic</p>
-                            </div>
-                            <div class="stat-card reveal">
-                                <div class="stat-number">7+</div>
-                                <p class="text-sm text-gray-500 mt-1 font-heading font-medium">Dairy Products</p>
-                            </div>
-                            <div class="stat-card reveal">
-                                <div class="stat-number">5+</div>
-                                <p class="text-sm text-gray-500 mt-1 font-heading font-medium">Farm Products</p>
-                            </div>
-                            <div class="stat-card reveal">
-                                <div class="stat-number">0</div>
-                                <p class="text-sm text-gray-500 mt-1 font-heading font-medium">Chemicals Used</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Two Worlds Section -->
-                <section class="relative z-10 py-24 bg-surface">
-                    <div class="container mx-auto px-6">
-                        <div class="text-center mb-16 reveal">
-                            <span class="font-heading text-xs uppercase tracking-[0.2em] text-gold">Two Worlds of Purity</span>
-                            <h2 class="text-4xl md:text-5xl font-heading text-gradient mt-3">The Heart of RamNayan</h2>
-                            <div class="section-divider mt-6"></div>
-                        </div>
-                        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                            <div class="glass gradient-border rounded-2xl p-10 text-center reveal group cursor-pointer" style="border-radius: 16px;">
-                                <div class="w-16 h-16 rounded-2xl bg-gold/10 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                                    <span class="material-symbols-rounded text-gold text-3xl">breakfast_dining</span>
-                                </div>
-                                <h3 class="text-2xl font-heading text-olive">The Taste of Tradition</h3>
-                                <p class="mt-4 text-gray-600 leading-relaxed">Premium organic dairy products crafted with ancestral wisdom. Our happy cows graze on lush, chemical-free pastures.</p>
-                                <button class="glow-btn mt-8 nav-link text-sm" data-page="dairy">Explore Dairy</button>
-                            </div>
-                            <div class="glass gradient-border rounded-2xl p-10 text-center reveal group cursor-pointer" style="border-radius: 16px;">
-                                <div class="w-16 h-16 rounded-2xl bg-olive/10 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                                    <span class="material-symbols-rounded text-olive text-3xl">yard</span>
-                                </div>
-                                <h3 class="text-2xl font-heading text-olive">The Goodness of the Earth</h3>
-                                <p class="mt-4 text-gray-600 leading-relaxed">Fresh, pesticide-free produce harvested from our sustainable gardens. Taste the vibrant flavors of food grown in living soil.</p>
-                                <button class="glow-btn mt-8 nav-link text-sm" data-page="farm" style="background: linear-gradient(135deg, #556B2F, #6B8E23); color: white;">Discover Farm</button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Founder Section -->
-                <section class="relative z-10 py-24 bg-white overflow-hidden">
-                    <div class="absolute top-0 right-0 w-96 h-96 rounded-full" style="background: radial-gradient(circle, rgba(218,165,32,0.05) 0%, transparent 70%);"></div>
-                    <div class="container mx-auto px-6">
-                        <div class="flex flex-col md:flex-row items-center gap-12 max-w-5xl mx-auto reveal">
-                            <div class="md:w-1/3 flex-shrink-0">
-                                <div class="relative">
-                                    <div class="w-56 h-56 md:w-64 md:h-64 rounded-full mx-auto overflow-hidden shadow-2xl gradient-border" style="border-radius: 50%;">
-                                        <img src="images/founder_portrait.jpg" alt="Founder S.S. Chaurasia" class="w-full h-full object-cover">
-                                    </div>
-                                    <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 glass rounded-full px-4 py-1.5 flex items-center gap-1.5 shadow-lg">
-                                        <span class="material-symbols-rounded text-olive text-sm">verified</span>
-                                        <span class="font-heading text-xs font-semibold text-olive">Founder</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="md:w-2/3 text-center md:text-left">
-                                <span class="font-heading text-xs uppercase tracking-[0.2em] text-gold">Meet The Founder</span>
-                                <h2 class="text-3xl md:text-4xl font-heading mt-3">From Engineer to <span class="text-gradient">Earth-Keeper</span></h2>
-                                <p class="mt-5 text-gray-600 leading-relaxed">S.S. Chaurasia left behind a corporate career to answer a different calling: a return to the land. His mission — to provide families with pure, healthy food and to build a business where integrity is the most valuable asset.</p>
-                                <div class="mt-8 bg-surface rounded-2xl p-6 border-l-4 border-gold">
-                                    <span class="quote-mark">"</span>
-                                    <p class="text-xl italic text-gray-700 -mt-6 ml-2">No work is small or big. Work is work, and we respect every kind of work.</p>
-                                </div>
-                                <button class="glow-btn mt-8 nav-link text-sm" data-page="about">Read Our Story</button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Farm Stay CTA -->
-                <section class="relative z-10 py-32 text-white text-center overflow-hidden">
-                    <div class="absolute inset-0 bg-cover bg-center bg-fixed" style="background-image: url('images/farm_landscape.png');"></div>
-                    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(59,77,31,0.85), rgba(85,107,47,0.75));"></div>
-                    <div class="relative container mx-auto px-6 reveal">
-                        <span class="material-symbols-rounded text-gold text-4xl mb-4">cottage</span>
-                        <h2 class="text-4xl md:text-5xl font-heading font-extrabold">Experience the Heart of RamNayan</h2>
-                        <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-200 leading-relaxed">Step away from the city noise and reconnect with nature. Join us for a farm stay that feeds your spirit and restores your peace.</p>
-                        <button class="glow-btn mt-10 nav-link text-base" data-page="farmstay">
-                            <span class="flex items-center gap-2">
-                                <span class="material-symbols-rounded text-sm">explore</span>
-                                Plan Your Escape
-                            </span>
-                        </button>
-                    </div>
-                </section>
-            `,
-
-                dairy: `
-                <div class="pt-24 pb-8 bg-surface relative z-10">
-                    <div class="container mx-auto px-6 text-center max-w-3xl reveal">
-                        <span class="font-heading text-xs uppercase tracking-[0.2em] text-gold">Our Dairy Collection</span>
-                        <h1 class="text-4xl md:text-5xl font-heading text-gradient mt-3">Pure, Traditional, and Full of Life</h1>
-                        <div class="section-divider mt-6"></div>
-                        <p class="mt-6 text-gray-600 leading-relaxed">At RamNayan Dairy, we believe great milk products start with happy cows. Our cattle roam freely, graze on natural fodder, and are treated with kindness. We honor tradition, using time-tested processes to create dairy products free from hormones, antibiotics, and artificial additives.</p>
-                    </div>
-                </div>
-                <section class="py-12 bg-surface relative z-10">
-                    <div class="container mx-auto px-6 space-y-8 max-w-5xl">
-                        ${dairyProducts.map((p, i) => createProductCard(p, i)).join('')}
-                    </div>
-                </section>
-            `,
-
-                farm: `
-                <div class="pt-24 pb-8 bg-surface relative z-10">
-                    <div class="container mx-auto px-6 text-center max-w-3xl reveal">
-                        <span class="font-heading text-xs uppercase tracking-[0.2em] text-gold">Our Farm Collection</span>
-                        <h1 class="text-4xl md:text-5xl font-heading text-gradient mt-3">From Our Healthy Soil to Your Home</h1>
-                        <div class="section-divider mt-6"></div>
-                        <p class="mt-6 text-gray-600 leading-relaxed">Welcome to the heart of RamNayan — our farm. Here, the soil is a living, breathing ecosystem we nurture with passion. We practice regenerative agriculture, creating a harmonious cycle where healthy land produces vibrant, nutrient-rich food.</p>
-                    </div>
-                </div>
-                <section class="py-12 bg-surface relative z-10">
-                    <div class="container mx-auto px-6 space-y-8 max-w-5xl">
-                        ${farmProducts.map((p, i) => createProductCard(p, i)).join('')}
-                    </div>
-                </section>
-            `,
-
-                farmstay: `
-                <div class="pt-24 pb-8 bg-surface relative z-10">
-                    <div class="container mx-auto px-6 max-w-5xl">
-                        <div class="text-center reveal">
-                            <span class="material-symbols-rounded text-gold text-4xl mb-3">cottage</span>
-                            <h1 class="text-4xl md:text-5xl font-heading text-gradient">Find Yourself in the Quiet of Nature</h1>
-                            <div class="section-divider mt-6"></div>
-                            <p class="mt-6 max-w-3xl mx-auto text-gray-600 leading-relaxed">Imagine waking to the gentle sound of birdsong instead of an alarm clock. Picture a morning spent not in traffic, but walking through fragrant lemon and guava groves. The RamNayan Farm Stay is your sanctuary from the relentless pace of modern life.</p>
-                        </div>
-
-                        <!-- Seasonal Highlights -->
-                        <div class="mt-16 glass gradient-border rounded-3xl p-8 md:p-12 reveal" style="border-radius: 24px;">
-                            <div class="text-center mb-8">
-                                <span class="font-heading text-xs uppercase tracking-[0.2em] text-gold">Seasonal Guide</span>
-                                <h2 class="text-3xl font-heading text-olive mt-2">A Year on the Farm</h2>
-                            </div>
-                            <div class="flex justify-center gap-3 mb-10">
-                                <button class="season-tab active font-heading font-semibold py-2.5 px-6 rounded-full text-sm flex items-center gap-2" data-season="summer">
-                                    <span class="material-symbols-rounded text-sm">wb_sunny</span> Summer
-                                </button>
-                                <button class="season-tab font-heading font-semibold py-2.5 px-6 rounded-full text-sm flex items-center gap-2" data-season="monsoon">
-                                    <span class="material-symbols-rounded text-sm">water</span> Monsoon
-                                </button>
-                                <button class="season-tab font-heading font-semibold py-2.5 px-6 rounded-full text-sm flex items-center gap-2" data-season="winter">
-                                    <span class="material-symbols-rounded text-sm">ac_unit</span> Winter
-                                </button>
-                            </div>
-                            <div id="seasonal-content" class="flex flex-col md:flex-row gap-8 items-center"></div>
-                        </div>
-
-                        <!-- Booking Section -->
-                        <div class="mt-16 glass gradient-border rounded-3xl p-8 md:p-12 text-center reveal" style="border-radius: 24px;">
-                            <span class="material-symbols-rounded text-gold text-4xl mb-4">calendar_month</span>
-                            <h2 class="text-3xl font-heading text-olive">Direct Booking with the Founder</h2>
-                            <p class="mt-4 max-w-2xl mx-auto text-gray-600 leading-relaxed">To maintain the personal and authentic nature of the experience, all inquiries and bookings are handled directly by the owner. Please reach out to discuss your visit.</p>
-                            <div class="mt-8 bg-white rounded-2xl p-8 max-w-md mx-auto shadow-lg border border-gray-100">
-                                <div class="w-16 h-16 rounded-full mx-auto overflow-hidden mb-4 shadow-md">
-                                    <img src="images/founder_portrait.jpg" alt="S.S. Chaurasia" class="w-full h-full object-cover">
-                                </div>
-                                <h3 class="font-heading font-bold text-olive text-lg">S.S. Chaurasia</h3>
-                                <p class="text-sm text-gray-400 font-heading">Founder & Host</p>
-                                <a href="tel:9987693560" class="mt-4 inline-flex items-center gap-2 glow-btn text-sm">
-                                    <span class="material-symbols-rounded text-sm">call</span>
-                                    9987693560
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `,
-
-                about: `
-                <div class="pt-24 pb-8 bg-surface relative z-10">
-                    <div class="container mx-auto px-6 max-w-4xl">
-                        <div class="text-center reveal">
-                            <span class="material-symbols-rounded text-gold text-4xl mb-3">auto_stories</span>
-                            <h1 class="text-4xl md:text-5xl font-heading text-gradient">Our Story is a Return to Our Roots</h1>
-                            <div class="section-divider mt-6"></div>
-                        </div>
-
-                        <!-- Origin -->
-                        <section class="mt-16 reveal">
-                            <div class="flex flex-col md:flex-row gap-10 items-center">
-                                <div class="md:w-1/2">
-                                    <span class="font-heading text-xs uppercase tracking-[0.2em] text-gold">The Beginning</span>
-                                    <h2 class="text-3xl font-heading text-olive mt-2">From a Corporate Desk to an Open Field</h2>
-                                    <p class="mt-5 text-gray-600 leading-relaxed">For years, our founder, S.S. Chaurasia, excelled in the world of engineering. It was a life of precision, deadlines, and success, yet a deeper purpose called to him. He saw a growing disconnect between people and the food they ate — a world of processed ingredients and forgotten traditions.</p>
-                                </div>
-                                <div class="md:w-1/2">
-                                    <div class="rounded-2xl overflow-hidden shadow-xl">
-                                        <img src="images/farm_landscape.png" alt="Farm landscape" class="w-full h-64 object-cover">
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- Philosophy -->
-                        <section class="mt-20 reveal">
-                            <div class="glass gradient-border rounded-3xl p-8 md:p-12 text-center" style="border-radius: 24px;">
-                                <span class="material-symbols-rounded text-gold text-4xl mb-4">favorite</span>
-                                <h2 class="text-3xl font-heading text-olive">"Work is Work"</h2>
-                                <p class="mt-5 text-gray-600 leading-relaxed max-w-2xl mx-auto">The foundation of RamNayan rests on a simple, profound philosophy: "no work is small or big, work is work, and we respect every kind of work." This belief is our guide. It's in the respectful care we give our cows, the patient tending of our soil, and the meticulous crafting of our products.</p>
-                            </div>
-                        </section>
-
-                        <!-- Founder's Message -->
-                        <section class="mt-20 reveal">
-                            <div class="bg-white rounded-3xl p-10 md:p-14 shadow-xl border border-gray-100 text-center">
-                                <span class="quote-mark">"</span>
-                                <p class="text-xl md:text-2xl italic text-gray-700 leading-relaxed -mt-4 max-w-2xl mx-auto">When you choose RamNayan, you are choosing more than just a product. You are choosing a philosophy. You are choosing food that is honest, made with respect, and connected to the earth. It is my personal promise to you that we will always remain true to these values. Welcome to our family.</p>
-                                <div class="mt-8">
-                                    <div class="w-16 h-16 rounded-full mx-auto overflow-hidden shadow-md mb-3">
-                                        <img src="images/founder_portrait.jpg" alt="S.S. Chaurasia" class="w-full h-full object-cover">
-                                    </div>
-                                    <p class="font-heading text-lg font-bold text-olive">S.S. Chaurasia</p>
-                                    <p class="text-sm text-gray-400">Founder, RamNayan</p>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-            `
-            };
-
-            // --- Floating Particles ---
-            function createParticles() {
-                const container = document.getElementById('particles-container');
-                if (!container) return;
-                const colors = ['#DAA520', '#556B2F', '#8B4513', '#6B8E23'];
-                for (let i = 0; i < 20; i++) {
-                    const p = document.createElement('div');
-                    p.classList.add('particle');
-                    const size = Math.random() * 6 + 3;
-                    const color = colors[Math.floor(Math.random() * colors.length)];
-                    p.style.width = size + 'px';
-                    p.style.height = size + 'px';
-                    p.style.background = color;
-                    p.style.opacity = (Math.random() * 0.3 + 0.1).toString();
-                    p.style.left = Math.random() * 100 + '%';
-                    p.style.top = Math.random() * 100 + '%';
-                    container.appendChild(p);
-
-                    gsap.to(p, {
-                        y: -Math.random() * 200 - 50,
-                        x: (Math.random() - 0.5) * 100,
-                        duration: Math.random() * 8 + 6,
-                        repeat: -1,
-                        yoyo: true,
-                        ease: 'sine.inOut',
-                        delay: Math.random() * 3
-                    });
-                }
-            }
-
-            // --- Scroll-Triggered Animations ---
-            function setupAnimations() {
-                gsap.utils.toArray('.reveal').forEach(elem => {
-                    gsap.fromTo(elem,
-                        { autoAlpha: 0, y: 50 },
-                        {
-                            autoAlpha: 1, y: 0,
-                            duration: 1, ease: 'power3.out',
-                            scrollTrigger: {
-                                trigger: elem,
-                                start: 'top 85%',
-                                toggleActions: 'play none none none'
-                            }
-                        }
-                    );
-                });
-            }
-
-            // --- Seasonal Tabs ---
-            function setupSeasonalTabs() {
-                const tabs = document.querySelectorAll('.season-tab');
-                const content = document.getElementById('seasonal-content');
-                if (!content) return;
-
-                function updateSeason(season) {
-                    const d = seasonalData[season];
-                    content.innerHTML = `
-                    <div class="md:w-1/2 rounded-2xl overflow-hidden shadow-xl">
-                        <img src="${d.image}" alt="${season}" class="w-full h-72 object-cover">
-                    </div>
-                    <div class="md:w-1/2">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="material-symbols-rounded" style="color: ${d.color};">${d.icon}</span>
-                            <span class="font-heading text-sm font-semibold text-olive capitalize">${season}</span>
-                        </div>
-                        <h3 class="text-2xl font-heading text-olive">${d.title}</h3>
-                        <p class="mt-4 text-gray-600 leading-relaxed">${d.text}</p>
-                    </div>
-                `;
-                    gsap.fromTo(content, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
-                }
-
-                tabs.forEach(tab => {
-                    tab.addEventListener('click', () => {
-                        tabs.forEach(t => t.classList.remove('active'));
-                        tab.classList.add('active');
-                        updateSeason(tab.dataset.season);
-                    });
-                });
-
-                updateSeason('summer');
-            }
-
-            // --- Page Loading ---
-            async function loadPage(page) {
-                if (!pages[page]) return;
-
-                gsap.to(pageCurtain, {
-                    scaleY: 1, duration: 0.3, ease: 'power2.inOut', transformOrigin: 'top',
-                    onComplete: () => {
-                        ScrollTrigger.getAll().forEach(t => t.kill());
-                        mainContent.innerHTML = pages[page];
-                        mainContent.style.paddingTop = page === 'home' ? '0' : '0';
-
-                        lenis.scrollTo(0, { immediate: true });
-                        updateActiveLink(page);
-
-                        gsap.to(pageCurtain, {
-                            scaleY: 0, duration: 0.3, ease: 'power2.inOut', transformOrigin: 'bottom',
-                            delay: 0.1,
-                            onComplete: () => {
-                                setupAnimations();
-                                if (page === 'home') createParticles();
-                                if (page === 'farmstay') setupSeasonalTabs();
-                            }
-                        });
-
-                        document.title = `RamNayan — ${page.charAt(0).toUpperCase() + page.slice(1)} | Nature's Purity`;
-                    }
-                });
-            }
-
-            function updateActiveLink(page) {
-                document.querySelectorAll('.nav-link').forEach(link =>
-                    link.classList.toggle('active', link.dataset.page === page)
-                );
-            }
-
-            // --- Scroll Header ---
-            function setupScrollHeader() {
-                window.addEventListener('scroll', () => {
-                    mainHeader.classList.toggle('scrolled', window.scrollY > 50);
-                    backToTopBtn.classList.toggle('visible', window.scrollY > 400);
-                });
-            }
-
-            // --- Events ---
-            document.body.addEventListener('click', (e) => {
-                const link = e.target.closest('.nav-link');
-                if (link && link.dataset.page) {
-                    e.preventDefault();
-                    loadPage(link.dataset.page);
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-
-            mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-            backToTopBtn.addEventListener('click', () => lenis.scrollTo(0));
-
-            // --- Init ---
-            setupSmooth();
-            setupScrollHeader();
-
-            window.onload = () => {
-                const preloader = document.getElementById('preloader');
-                gsap.to(preloader, {
-                    opacity: 0, duration: 0.5,
-                    onComplete: () => preloader.style.display = 'none'
-                });
-                document.body.style.opacity = '1';
-                gsap.to(pageCurtain, { scaleY: 0, duration: 0.5, ease: 'power2.inOut', delay: 0.2, transformOrigin: 'bottom' });
-                loadPage('home');
-            };
-        }
-        init();
-    </script>
+  /* Hero entrance */
+  requestAnimationFrame(function(){ document.body.classList.add('loaded'); });
+})();
+</script>
 </body>
-
 </html>
