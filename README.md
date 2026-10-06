@@ -1,3 +1,8 @@
+<p>
+  <a href="https://ramnayan-dairy.vercel.app"><img src="https://img.shields.io/badge/Live-Demo-brightgreen?style=flat-square" alt="Live Demo" /></a>
+  <img src="https://img.shields.io/badge/Brand-Website-blue?style=flat-square" alt="Brand Website" />
+</p>
+
 <div align="center">
 
 # राम नयन डेयरी — Ram Nayan Dairy
