@@ -5,9 +5,9 @@
 
 <div align="center">
 
-# राम नयन डेयरी — Ram Nayan Dairy
+# राम नयन डेयरी: Ram Nayan Dairy
 
-Brand website for **Ram Nayan Dairy and Milk Products** — fresh dairy, heritage, and trust.
+Brand website for **Ram Nayan Dairy and Milk Products**: fresh dairy, heritage, and trust.
 
 </div>
 
@@ -19,7 +19,7 @@ Editorial Indian-heritage direction:
 - Giant Hindi display type (**Tiro Devanagari Hindi**, self-hosted) paired with **EB Garamond**
 - Asymmetric editorial hero, print-plate image treatments, Hindi-numeral section markers (०१ ०२ ०३ ०४)
 - Products as an index list, full-bleed farm break, founder story with Hindi pull-quote
-- Zero gradients, zero emojis, zero stock-card grids — every fact on the page is real
+- Zero gradients, zero emojis, zero stock-card grids, every fact on the page is real
 
 ## Stack
 
